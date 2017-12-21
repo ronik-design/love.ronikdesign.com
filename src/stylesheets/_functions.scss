@@ -1,0 +1,51 @@
+/* Return index of matched value in list */
+@function -index($list, $value) {
+  @for $i from 1 through length($list) {
+    @if nth($list, $i) == $value {
+      @return $i;
+    }
+  }
+
+  @return null;
+}
+
+@function -z($key, $mod: 0) {
+
+  $index: -index($layers, $key) * 10;
+
+  @if $mod {
+    @return $index + $mod;
+  }
+
+  @return $index;
+}
+
+@function -color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+
+  @return null;
+}
+
+@function -weight($key) {
+  @if map-has-key($font-weights, $key) {
+    @return map-get($font-weights, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $font-weights.";
+
+  @return null;
+}
+
+@function -bp($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $breakpoints.";
+
+  @return null;
+}

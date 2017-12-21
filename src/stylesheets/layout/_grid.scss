@@ -1,0 +1,30 @@
+@lost gutter 4rem;
+@lost flexbox flex;
+@lost cycle auto;
+
+%container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 120rem;
+
+  @include for-tablet-portrait-up {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include for-big-desktop-up {
+    max-width: 148rem;
+  }
+}
+
+%wrap {
+  position: relative;
+
+  @include for-desktop-up {
+    lost-column: 5/6;
+    lost-offset: 1/12;
+  }
+}

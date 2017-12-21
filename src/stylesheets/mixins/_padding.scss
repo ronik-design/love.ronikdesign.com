@@ -1,0 +1,11 @@
+@mixin vertical-padding($top, $bottom: $top) {
+  @include for-tablet-portrait-down {
+    padding-top: $top / 2;
+    padding-bottom: $bottom / 2;
+  }
+
+  @include for-tablet-landscape-up {
+    padding-top: $top;
+    padding-bottom: $bottom;
+  }
+}

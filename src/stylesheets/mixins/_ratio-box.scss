@@ -1,0 +1,19 @@
+@mixin ratio-box($percent) {
+  position: relative;
+  display: block;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: $percent;
+  }
+
+  > * {
+    @extend %absolute-fill;
+  }
+
+  > img {
+    object-fit: cover;
+    font-family: 'object-fit: cover;';
+  }
+}

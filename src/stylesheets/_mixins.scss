@@ -1,0 +1,28 @@
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    transition: $transition;
+  }
+}
+
+/* Utilities */
+@import "mixins/breakpoints";
+@import "mixins/hover";
+@import "mixins/font-smoothing";
+
+/* Components */
+@import "mixins/border-radius";
+@import "mixins/ratio-box";
+
+/* Layout */
+@import "mixins/clearfix";
+@import "mixins/padding";
+
+/* Specific */
+@import "mixins/curve-layer";
+@import "mixins/responsive-embed";

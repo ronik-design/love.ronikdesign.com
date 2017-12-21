@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    {% include "partials/head.html" %}
+    {% block extra_head %}{% endblock %}
+
+    {# Favicons from Webpack favicon generator #}
+    {% for element in global.favicon.html %}
+      {{ element | replace('/favicon-', '/assets/favicon-') | safe }}
+    {% endfor %}
+
+    {% include "partials/scripts.html" %}
+  </head>
+  <body class="{% block body_class %}body{% endblock %}">
+    {% include "partials/scripts-body.html" %}
+
+    <div class="wrapper">
+      {% block header %}
+        {% include "partials/header.html" %}
+      {% endblock %}
+
+      <main class="main">
+        {% block content %}{% endblock %}
+      </main>
+
+      {% block footer %}
+        {% include "partials/footer.html" %}
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

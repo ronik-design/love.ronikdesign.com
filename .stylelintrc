@@ -1,0 +1,11 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-hex-length": null,
+    "selector-pseudo-element-colon-notation": "single",
+    "no-invalid-double-slash-comments": null,
+    "function-name-case": null,
+    "unit-no-unknown": null,
+    "property-no-unknown": null
+  }
+}

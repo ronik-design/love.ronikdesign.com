@@ -1,0 +1,62 @@
+$default-type-color: -color(black);
+$default-type-family: sans-serif;
+
+div,
+p,
+span,
+li,
+small,
+label,
+input,
+select,
+button,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+em,
+figure,
+cite {
+  @include font-smoothing(on);
+
+  text-rendering: optimizeLegibility;
+  font-family: $default-type-family;
+}
+
+* {
+  &::selection {
+    background-color: -color(silver);
+  }
+
+  &::-moz-selection {
+    background-color: -color(silver);
+  }
+}
+
+@mixin hd-a($color: $default-type-color) {
+  color: $color;
+  font-family: $default-type-family;
+  font-size: 2.6rem;
+  font-weight: -weight(bold);
+  line-height: 1.3;
+
+  @include for-tablet-portrait-up {
+    font-size: 3.6rem;
+  }
+
+  @include for-tablet-landscape-up {
+    font-size: 5.4rem;
+    line-height: 1.13;
+  }
+}
+
+@mixin copy-a($color: $default-type-color) {
+  color: $color;
+  line-height: 1;
+  font-size: 1.5rem;
+  font-weight: -weight(regular);
+}

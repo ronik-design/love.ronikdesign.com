@@ -1,0 +1,143 @@
+%strip-input-style {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  outline: 0 none !important;
+  appearance: none;
+  padding: 0;
+}
+
+%strip-link-style {
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    font-style: inherit;
+    color: inherit;
+    background-color: transparent;
+    font-size: inherit;
+    text-decoration: none;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    font-family: inherit;
+  }
+}
+
+%basic-block {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+%fixed-block {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+%flex-block {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+%hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+%unselectable {
+  user-select: none;
+  pointer-events: none;
+}
+
+%vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%horizontal-align {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%center-align {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%absolute-align {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%absolute-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%cover-background {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+%contain-background {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+%cover-image {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
+
+%contain-image {
+  object-fit: contain;
+  font-family: 'object-fit: contain;';
+}
+
+%cover-fill-image {
+  @extend %absolute-fill;
+  @extend %cover-image;
+}
+
+%contain-fill-image {
+  @extend %absolute-fill;
+  @extend %contain-image;
+}
+
+%background {
+  @extend %unselectable;
+
+  z-index: -z(background);
+}
+
+%cf {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

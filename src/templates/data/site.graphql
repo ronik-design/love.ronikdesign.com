@@ -1,0 +1,19 @@
+query {
+  settings: getSiteSettings {
+    googleAnalyticsId
+  }
+  social: getSocialSettings {
+    name
+    description
+    url
+    image {
+      s3Key
+    }
+    facebook {
+      appId
+    }
+    twitter {
+      site
+    }
+  }
+}
