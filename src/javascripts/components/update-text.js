@@ -5,22 +5,15 @@ AFRAME.registerComponent('update-text', {
     input: {}
   },
   init() {
-    this.updateText = this.updateText.bind(this);
+    this.addEventListeners = this.addEventListeners.bind(this);
     this.addEventListeners();
   },
   update() {
     const inputEl = document.querySelector(this.data.input);
     this.el.setAttribute('text-geometry', `value: ${inputEl.value}`);
-    console.log(inputEl);
-    console.log(this.el.getAttribute('text-geometry'));
-  },
-  updateText(value) {
-    this.el.setAttribute('text-geometry', `value: ${value}`);
   },
   addEventListeners() {
     const inputEl = document.querySelector(this.data.input);
-    inputEl.addEventListener('input', function (e) {
-      this.updateText(e.value);
-    });
+    inputEl.addEventListener('input', () => this.update());
   }
 });
