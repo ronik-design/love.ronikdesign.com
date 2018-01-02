@@ -75,12 +75,11 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
-    "aframe": "^0.7.1",
-    "aframe-text-geometry-component": "^0.5.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "core-js": "^2.4.1",
-    "get-parameter": "^1.0.8"
+    "get-parameter": "^1.0.8",
+    "three": "^0.89.0"
   },
   "main": "index.js"
 }

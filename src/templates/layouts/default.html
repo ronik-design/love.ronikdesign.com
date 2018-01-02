@@ -9,24 +9,8 @@
       {{ element | replace('/favicon-', '/assets/favicon-') | safe }}
     {% endfor %}
 
-    {% include "partials/scripts.html" %}
   </head>
   <body class="{% block body_class %}body{% endblock %}">
-    {% include "partials/scripts-body.html" %}
-
-    <div class="wrapper">
-      {% block header %}
-        {% include "partials/header.html" %}
-      {% endblock %}
-
-      <main class="main">
-        {% block content %}{% endblock %}
-      </main>
-
-      {% block footer %}
-        {% include "partials/footer.html" %}
-      {% endblock %}
-    </div>
-
+    {% include "partials/scripts.html" %}
   </body>
 </html>
