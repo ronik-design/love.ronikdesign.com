@@ -11,10 +11,7 @@
 
   </head>
   <body class="{% block body_class %}body{% endblock %}">
-  <div id="info" style="position: absolute; top: 0; left: 0;">
-    <a id="permalink" href="#">copy permalink</a>
-  </div>
-
+    {% include "partials/controls.html" %}
     {% include "partials/scripts.html" %}
   </body>
 </html>
