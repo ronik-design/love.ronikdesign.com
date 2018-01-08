@@ -1,5 +1,0 @@
-query {
-  page: getHomepage {
-    title
-  }
-}

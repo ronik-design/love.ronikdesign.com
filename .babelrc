@@ -1,9 +1,15 @@
 {
   "presets": [
-    ["es2015", {"modules": false}],
-    "stage-0"
+    [
+      "babel-preset-env", {
+        "useBuiltIns": "usage"
+      }
+    ]
   ],
+  "ignore": "src/vendor/*.js",
   "plugins": [
-    ["transform-runtime", {"polyfill": true, "regenerator": true}]
+    [ "transform-react-jsx", { "pragma": "h" } ],
+    "babel-plugin-transform-object-rest-spread",
+    "babel-plugin-transform-class-properties"
   ]
 }

@@ -1,5 +1,0 @@
-query {
-  homepage: getHomepage {
-    _updatedAt
-  }
-}

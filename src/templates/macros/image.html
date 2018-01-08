@@ -1,9 +1,0 @@
-{% macro image(key, srcset, sizes) %}
-  {% set comma = joiner() %}
-
-  <img src="{{ key | image }}"
-       {% if srcset %}srcset="{% for src in srcset %}{{ comma() }} {{ key | image({w: src}) }} {{ src }}w{% endfor %}"{% endif %}
-       {% if sizes %}sizes="{% for size in sizes %}{{ comma() }} {{ condition }} {{ width }}{% endfor %}"{% endif %}
-  />
-
-{% endmacro %}
