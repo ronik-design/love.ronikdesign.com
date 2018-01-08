@@ -1,13 +1,13 @@
 {
-  "name": "threejs-app",
+  "name": "2018.ronikdesign.com",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
   "license": "MIT",
   "author": {
-    "name": "Matt DesLauriers",
-    "email": "dave.des@gmail.com",
-    "url": "https://github.com/mattdesl"
+    "name": "Ronik",
+    "email": "hello@ronikdesign.com",
+    "url": "https://github.com/ronik-design"
   },
   "dependencies": {
     "@jam3/gsap-promise": "^4.0.1",
@@ -86,10 +86,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mattdesl/threejs-app.git"
+    "url": "git://github.com/ronik-design/2018.ronikdesign.com"
   },
-  "homepage": "https://github.com/mattdesl/threejs-app",
+  "homepage": "https://github.com/ronik-design/2018.ronikdesign.com",
   "bugs": {
-    "url": "https://github.com/mattdesl/threejs-app/issues"
+    "url": "https://github.com/ronik-design/2018.ronikdesign.com/issues"
   }
 }
