@@ -38,7 +38,7 @@ class Header extends BaseComponent {
       animate.to(this.container, 2, {
         ...opt,
         ease: Expo.easeOut,
-        y: 20
+        y: 10
       })
     ]);
   }

@@ -24,7 +24,9 @@ class App extends BaseComponent {
     this.state = {
       isLoaded: false,
       isAltMaterial: false,
-      section: 'Preloader'
+      section: 'Preloader',
+      isNew: false,
+      canControlCamera: false
     };
   }
 
@@ -76,7 +78,7 @@ class App extends BaseComponent {
     });
   }
 
-  handelMaterialSwap = () => {
+  handleMaterialSwap = () => {
     this.setState({ isAltMaterial: !this.state.isAltMaterial });
   }
 
@@ -87,7 +89,7 @@ class App extends BaseComponent {
       case 'Preloader': return <Preloader key='Preloader' />;
 
       default:
-      case 'Landing': return <Landing key='Landing' onMaterialSwap={this.handelMaterialSwap} />;
+      case 'Landing': return <Landing key='Landing' onMaterialSwap={this.handleMaterialSwap} />;
     }
   }
 
@@ -115,7 +117,7 @@ class App extends BaseComponent {
 App.defaultProps = {
   // Artificially inflate preload time so
   // we can see it for demo purposes
-  fakePreloadTime: 1250
+  fakePreloadTime: 500
 };
 
 module.exports = App;

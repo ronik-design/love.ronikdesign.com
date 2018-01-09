@@ -1,10 +1,11 @@
 /** @jsx h */
 const { h, Component } = require('preact');
 const BaseComponent = require('../../components/BaseComponent/BaseComponent');
+const Icon = require('../../components/Icon/Icon');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 
-class MaterialButton extends BaseComponent {
+class Button extends BaseComponent {
   constructor (props) {
     super(props);
     this.state = {
@@ -32,22 +33,30 @@ class MaterialButton extends BaseComponent {
   }
 
   render () {
+    const {icon} = this.props;
     const classes = classnames({
-      'MaterialButton': true
+      'Button': true
     });
     return (
-      <div 
+      <button
         onClick={this.props.onClick}
         className={classes}
         ref={ c => { this.container = c; } }>
-        { this.props.children }
-      </div>
+        {icon &&
+          <div className="ButtonIcon">
+            <Icon name='share'/>
+          </div>
+        }
+        <div className="ButtonText">
+          { this.props.children }
+        </div>
+      </button>
     );
   }
 }
 
-MaterialButton.defaultProps = {
+Button.defaultProps = {
   onClick: () => {}
 };
 
-module.exports = MaterialButton;
+module.exports = Button;

@@ -1,0 +1,35 @@
+.Button {
+  .interactive;
+  .noselect;
+
+  height: 48px;
+  color: white;
+  font-size: 14px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.5s @easeOutCubic;
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 0 2.4rem;
+  line-height: 4.2rem;
+  opacity: 0;
+  display: flex;
+
+  &:hover,
+  &:focus {
+    transition: background 0.25s @easeOutCubic;
+    background: rgba(255, 255, 255, 1.0);
+    color: #000;
+  }
+  &:active {
+    transition: background 0.1s @easeOutCubic;
+    background: rgb(213,70,70);
+  }
+  & + .Button {
+    margin-left: 16px;
+  }
+
+  &Icon {
+    margin-right: 8px;
+  }
+}

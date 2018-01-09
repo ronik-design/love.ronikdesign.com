@@ -4,7 +4,8 @@ const BaseComponent = require('../../components/BaseComponent/BaseComponent');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 
-const MaterialButton = require('../../components/MaterialButton/MaterialButton');
+const Button = require('../../components/Button/Button');
+const Controls = require('../../components/Controls/Controls');
 const Header = require('../../components/Header/Header');
 
 class Landing extends BaseComponent {
@@ -16,14 +17,15 @@ class Landing extends BaseComponent {
 
   animateIn () {
     return Promise.all([
-      this.header.animateIn({ delay: 0.25 }),
-      this.button.animateIn({ delay: 0.5 })
+      //
+      this.button.animateIn({ delay: 0.5 }),
+      this.buttonb.animateIn({ delay: 0.7 }),
     ]);
   }
 
   animateOut () {
     return Promise.all([
-      this.header.animateOut()
+      //
     ]);
   }
 
@@ -33,14 +35,23 @@ class Landing extends BaseComponent {
     });
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
-        <Header ref={ c => { this.header = c; } }>
-          ThreeJS + Preact
-        </Header>
-        <MaterialButton
-          onClick={this.props.onMaterialSwap}
-          ref={ c => { this.button = c; } }>
-          Click to swap material
-        </MaterialButton>
+        <Controls>
+          <div className="ControlsGroup">
+            <Button
+              onClick={this.props.onMaterialSwap}
+              ref={ c => { this.button = c; } }>
+              Click to swap material
+            </Button>
+          </div>
+          <div className="ControlsGroup">
+            <Button
+                ref={ c => { this.buttonb = c; } }
+                icon='test'
+            >
+              Share
+            </Button>
+          </div>
+        </Controls>
       </div>
     );
   }

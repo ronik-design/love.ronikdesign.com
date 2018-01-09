@@ -15,7 +15,7 @@ const canvas = document.createElement('canvas');
 
 // Setup the WebGLRenderer
 const webgl = new WebGLApp({
-  background: 'white',
+  background: 'black',
   canvas
 });
 

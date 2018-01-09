@@ -32,7 +32,7 @@ class Preloader extends BaseComponent {
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
         <Header ref={ c => { this.header = c; } }>
-          Preloader
+          Loading...
         </Header>
       </div>
     );
