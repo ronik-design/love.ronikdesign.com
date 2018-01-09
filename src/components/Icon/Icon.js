@@ -1,4 +1,5 @@
 const { h, Component } = require('preact');
+const uppercase = require('../../util/uppercase');
 
 const icons = {
   share: (
@@ -47,15 +48,11 @@ const icons = {
   )
 };
 
-function upperCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 class Icon extends Component {
   render() {
     const {name} = this.props;
     return (
-      <div className={`Icon${upperCase(name)}`}>
+      <div className={`Icon${uppercase(name)}`}>
         {icons[name]}
       </div>
     )
