@@ -16,10 +16,18 @@ class Landing extends BaseComponent {
   }
 
   animateIn () {
+    const buttons = [
+      this.colorButton,
+      this.objectsButton,
+      this.textButton,
+      this.shareButton
+    ];
+
     return Promise.all([
-      //
-      this.button.animateIn({ delay: 0.5 }),
-      this.buttonb.animateIn({ delay: 0.7 }),
+      this.colorButton.animateIn({ delay: 0.3 }),
+      this.objectsButton.animateIn({ delay: 0.5 }),
+      this.textButton.animateIn({ delay: 0.7 }),
+      this.shareButton.animateIn({ delay: 0.9 }),
     ]);
   }
 
@@ -39,14 +47,30 @@ class Landing extends BaseComponent {
           <div className="ControlsGroup">
             <Button
               onClick={this.props.onMaterialSwap}
-              ref={ c => { this.button = c; } }>
-              Click to swap material
+              ref={ c => { this.colorButton = c; } }
+              icon='color'
+            >
+              Swap colors
+            </Button>
+            <Button
+              onClick={this.props.onMaterialSwap}
+              ref={ c => { this.objectsButton = c; } }
+              icon='objects'
+            >
+              Swap scene
+            </Button>
+            <Button
+              onClick={this.props.onMaterialSwap}
+              ref={ c => { this.textButton = c; } }
+              icon='text'
+            >
+              Edit Text
             </Button>
           </div>
           <div className="ControlsGroup">
             <Button
-                ref={ c => { this.buttonb = c; } }
-                icon='test'
+                ref={ c => { this.shareButton = c; } }
+                icon='share'
             >
               Share
             </Button>

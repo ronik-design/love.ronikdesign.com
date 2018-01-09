@@ -35,7 +35,8 @@ class Button extends BaseComponent {
   render () {
     const {icon} = this.props;
     const classes = classnames({
-      'Button': true
+      'Button': true,
+      'hasIcon': icon
     });
     return (
       <button
@@ -44,7 +45,7 @@ class Button extends BaseComponent {
         ref={ c => { this.container = c; } }>
         {icon &&
           <div className="ButtonIcon">
-            <Icon name='share'/>
+            <Icon name={icon}/>
           </div>
         }
         <div className="ButtonText">
