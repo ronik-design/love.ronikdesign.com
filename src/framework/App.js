@@ -13,7 +13,7 @@ const Preloader = require('../sections/Preloader/Preloader');
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
-const Honeycomb = require('../webgl/scene/Honeycomb');
+const Text = require('../webgl/scene/Text');
 
 const { assets, webgl } = require('../context');
 
@@ -74,7 +74,7 @@ class App extends BaseComponent {
 
       // Add any "WebGL components" here...
       // webgl.scene.add(new SpinningBox());
-      webgl.scene.add(new Honeycomb());
+      webgl.scene.add(new Text());
     });
   }
 
