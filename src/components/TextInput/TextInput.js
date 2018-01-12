@@ -9,6 +9,10 @@ class TextInput extends BaseComponent {
     super(props);
   }
 
+  handleChange = e => {
+    this.props.onTextUpdate(e.target.value);
+  }
+
   render () {
     const classes = classnames({
       'TextInput': true,
@@ -16,7 +20,12 @@ class TextInput extends BaseComponent {
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
         <div className="wrapper">
-          <input autoFocus ref={ c => { this.textInput = c } } type="text" placeholder="Start typing..."/>
+          <input autoFocus
+                 ref={ c => { this.textInput = c } }
+                 onChange={this.handleChange}
+                 type="text"
+                 placeholder="Start typing..."
+          />
         </div>
       </div>
     );

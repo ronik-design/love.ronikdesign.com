@@ -98,10 +98,10 @@ class App extends BaseComponent {
     // NB: Ensure there is a 'key' attribute so transition group can create animations
     switch (section) {
       case 'Preloader': return <Preloader key='Preloader'/>;
-      case 'EditText': return <EditText key='EditText' updateContent={this.updateContent}/>;
+      case 'EditText': return <EditText key='EditText' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent}/>;
 
       default:
-      case 'Landing': return <Landing key='Landing' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent} />;
+      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} />;
     }
   }
 

@@ -49,7 +49,7 @@ class EditText extends BaseComponent {
         <div style={buttonPosition}>
           <Button onClick={this.handleCancel} ref={ c => { this.closeButton = c; } }>Close</Button>
         </div>
-        <TextInput ref={ input => { this.textInput = input } }/>
+        <TextInput onTextUpdate={this.props.onTextUpdate} ref={ input => { this.textInput = input } }/>
       </div>
     );
   }
