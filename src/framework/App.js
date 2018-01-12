@@ -8,6 +8,7 @@ const PreactTransitionGroup = require('preact-transition-group');
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
 const Preloader = require('../sections/Preloader/Preloader');
+const EditText = require('../sections/EditText/EditText');
 
 // WebGL canvas component
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
@@ -22,6 +23,7 @@ class App extends BaseComponent {
     super(props);
 
     this.state = {
+      text: 'ronik',
       isLoaded: false,
       isAltMaterial: false,
       section: 'Preloader',
@@ -82,14 +84,24 @@ class App extends BaseComponent {
     this.setState({ isAltMaterial: !this.state.isAltMaterial });
   }
 
+  handleTextUpdate = text => {
+    this.setState({text: text});
+  }
+
+  updateContent = section => {
+    this.getContent(section);
+    this.setState({section: section});
+  }
+
   getContent (section) {
     // You are probably better off using a real "Router" for history push etc.
     // NB: Ensure there is a 'key' attribute so transition group can create animations
     switch (section) {
-      case 'Preloader': return <Preloader key='Preloader' />;
+      case 'Preloader': return <Preloader key='Preloader'/>;
+      case 'EditText': return <EditText key='EditText' updateContent={this.updateContent}/>;
 
       default:
-      case 'Landing': return <Landing key='Landing' onMaterialSwap={this.handleMaterialSwap} />;
+      case 'Landing': return <Landing key='Landing' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent} />;
     }
   }
 
@@ -117,7 +129,7 @@ class App extends BaseComponent {
 App.defaultProps = {
   // Artificially inflate preload time so
   // we can see it for demo purposes
-  fakePreloadTime: 500
+  fakePreloadTime: 250
 };
 
 module.exports = App;

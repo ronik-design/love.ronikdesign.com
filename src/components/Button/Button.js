@@ -14,7 +14,7 @@ class Button extends BaseComponent {
 
   animateIn (opt = {}) {
     return Promise.all([
-      animate.fromTo(this.container, 1.0, {
+      animate.fromTo(this.container, 0, {
         autoAlpha: 0
       }, {
         ...opt,
@@ -25,7 +25,7 @@ class Button extends BaseComponent {
 
   animateOut (opt = {}) {
     return Promise.all([
-      animate.to(this.container, 1.0, {
+      animate.to(this.container, 0, {
         ...opt,
         autoAlpha: 0
       })

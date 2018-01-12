@@ -11,18 +11,9 @@ const Header = require('../../components/Header/Header');
 class Landing extends BaseComponent {
   constructor (props) {
     super(props);
-    this.state = {
-    };
   }
 
   animateIn () {
-    const buttons = [
-      this.colorButton,
-      this.objectsButton,
-      this.textButton,
-      this.shareButton
-    ];
-
     return Promise.all([
       this.colorButton.animateIn({ delay: 0.3 }),
       this.objectsButton.animateIn({ delay: 0.5 }),
@@ -33,8 +24,15 @@ class Landing extends BaseComponent {
 
   animateOut () {
     return Promise.all([
-      //
+      this.colorButton.animateOut({ delay: 0.3 }),
+      this.objectsButton.animateOut({ delay: 0.5 }),
+      this.textButton.animateOut({ delay: 0.7 }),
+      this.shareButton.animateOut({ delay: 0.9 }),
     ]);
+  }
+
+  handleChangeScene(scene) {
+    this.props.updateContent(scene);
   }
 
   render () {
@@ -60,7 +58,7 @@ class Landing extends BaseComponent {
               Swap scene
             </Button>
             <Button
-              onClick={this.props.onMaterialSwap}
+              onClick={() => this.handleChangeScene('EditText')}
               ref={ c => { this.textButton = c; } }
               icon='text'
             >

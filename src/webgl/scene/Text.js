@@ -14,21 +14,10 @@ module.exports = class Text extends THREE.Object3D {
   constructor () {
     super();
 
-    this.material = new LiveShaderMaterial(honeyShader, {
-      transparent: true,
-      wireframe: true,
-      uniforms: {
-        alpha: { value: 0 },
-        time: { value: 0 },
-        colorA: { value: new THREE.Color('rgb(94,222,179)') },
-        colorB: { value: new THREE.Color('rgb(85,57,210)') }
-      }
-    });
+    this.loader = new THREE.FontLoader();
 
-    const loader = new THREE.FontLoader();
-    loader.load('assets/fonts/helvetiker.typeface.json', font => {
-      this.addText(font);
-    });
+    this.text = 'ronik';
+    this.refreshText();
   }
 
   animateIn (opt = {}) {
@@ -45,44 +34,57 @@ module.exports = class Text extends THREE.Object3D {
     });
   }
 
-  addText(font) {
-    const text = 'ronik';
+  createText(font) {
+    const text = this.text;
     const options = {
       font: font,
       size: 0.8,
       height: 0.2
     };
 
-    const textGeo = new THREE.TextGeometry(text, options);
+    this.textGeo = new THREE.TextGeometry(text, options);
 
-    const mesh = new THREE.Mesh(
-      textGeo,
+    this.material = new LiveShaderMaterial(honeyShader, {
+      transparent: true,
+      wireframe: true,
+      uniforms: {
+        alpha: { value: 0 },
+        time: { value: 0 },
+        colorA: { value: new THREE.Color('rgb(94,222,179)') },
+        colorB: { value: new THREE.Color('rgb(85,57,210)') }
+      }
+    });
+
+    this.altMaterial = new THREE.MeshNormalMaterial();
+
+    this.mesh = new THREE.Mesh(
+      this.textGeo,
       this.material
     );
 
     // compute sizes
-    textGeo.computeBoundingBox();
-    textGeo.computeVertexNormals();
+    this.textGeo.computeBoundingBox();
+    this.textGeo.computeVertexNormals();
 
     // center text
-    mesh.position.x = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-    mesh.position.y = -0.5 * ( textGeo.boundingBox.max.y - textGeo.boundingBox.min.y );
+    this.mesh.position.x = -0.5 * ( this.textGeo.boundingBox.max.x - this.textGeo.boundingBox.min.x );
+    this.mesh.position.y = -0.5 * ( this.textGeo.boundingBox.max.y - this.textGeo.boundingBox.min.y );
 
     // "fix" side normals by removing z-component of normals for side faces
     // (this doesn't work well for beveled geometry as then we lose nice curvature around z-axis)
     const triangleAreaHeuristics = 0.1 * (options.height * options.size);
 
-    for (let i = 0; i < textGeo.faces.length; i++) {
-      const face = textGeo.faces[i];
+    for (let i = 0; i < this.textGeo.faces.length; i++) {
+      const face = this.textGeo.faces[i];
       if (face.materialIndex === 1) {
         for (let j = 0; j < face.vertexNormals.length; j++) {
           face.vertexNormals[j].z = 0;
           face.vertexNormals[j].normalize();
         }
 
-        const va = textGeo.vertices[face.a];
-        const vb = textGeo.vertices[face.b];
-        const vc = textGeo.vertices[face.c];
+        const va = this.textGeo.vertices[face.a];
+        const vb = this.textGeo.vertices[face.b];
+        const vc = this.textGeo.vertices[face.c];
         const s = triangleArea(va, vb, vc);
 
         if (s > triangleAreaHeuristics) {
@@ -93,7 +95,17 @@ module.exports = class Text extends THREE.Object3D {
       }
     }
 
-    this.add(mesh);
+    this.add(this.mesh);
+  }
+
+  refreshText = () => {
+    if (this.mesh) {
+      this.remove(this.mesh);
+    }
+
+    this.loader.load('assets/fonts/helvetiker.typeface.json', font => {
+      this.createText(font);
+    });
   }
 
   update (dt = 0, time = 0) {
