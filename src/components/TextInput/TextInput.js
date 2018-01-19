@@ -13,6 +13,11 @@ class TextInput extends BaseComponent {
     this.props.onTextUpdate(e.target.value);
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.handleCancel();
+  }
+
   render () {
     const classes = classnames({
       'TextInput': true,
@@ -20,12 +25,14 @@ class TextInput extends BaseComponent {
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
         <div className="wrapper">
+          <form onSubmit={this.handleSubmit}>
           <input autoFocus
                  ref={ c => { this.textInput = c } }
                  onChange={this.handleChange}
                  type="text"
                  placeholder="Start typing..."
           />
+          </form>
         </div>
       </div>
     );

@@ -18,6 +18,8 @@ module.exports = class Text extends THREE.Object3D {
 
     this.text = 'ronik';
     this.refreshText();
+
+    this.hasAnimatedOnce = false;
   }
 
   animateIn (opt = {}) {
@@ -96,9 +98,14 @@ module.exports = class Text extends THREE.Object3D {
     }
 
     this.add(this.mesh);
+
+    // prevent animation from being fired twice on first load
+    if (this.hasAnimatedOnce) {
+      this.animateIn();
+    }
   }
 
-  refreshText = () => {
+  refreshText() {
     if (this.mesh) {
       this.remove(this.mesh);
     }
@@ -106,6 +113,21 @@ module.exports = class Text extends THREE.Object3D {
     this.loader.load('assets/fonts/helvetiker.typeface.json', font => {
       this.createText(font);
     });
+  }
+
+  onAppDidUpdate (oldProps, oldState, newProps, newState) {
+    if (oldState.isLoaded === false) {
+      return;
+    } else {
+      this.hasAnimatedOnce = true;
+    }
+
+    if (oldState.text === newState.text) {
+      return;
+    }
+
+    this.text = newState.text;
+    this.refreshText();
   }
 
   update (dt = 0, time = 0) {
