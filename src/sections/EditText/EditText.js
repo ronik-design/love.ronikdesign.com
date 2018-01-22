@@ -28,7 +28,8 @@ class EditText extends BaseComponent {
         ...opt,
         ease: Expo.easeOut,
         y: 0
-      })
+      }),
+      this.closeButton.animateIn()
     ]);
   }
 
