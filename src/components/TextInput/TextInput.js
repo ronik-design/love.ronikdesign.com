@@ -27,7 +27,7 @@ class TextInput extends BaseComponent {
         <div className="wrapper">
           <form onSubmit={this.handleSubmit}>
           <input autoFocus
-                 ref={ c => { this.textInput = c } }
+                 ref={input => input && input.focus()}
                  onChange={this.handleChange}
                  type="text"
                  placeholder="Start typing..."

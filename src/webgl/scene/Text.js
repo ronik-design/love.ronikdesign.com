@@ -132,7 +132,7 @@ module.exports = class Text extends THREE.Object3D {
 
   update (dt = 0, time = 0) {
     // This function gets propagated down from the WebGL app to all children
-    this.rotation.y += dt * 0.1;
-    this.material.uniforms.time.value = time;
+    // this.rotation.y += dt * 0.1;
+    this.material.uniforms.time.value = time * 0.5;
   }
 };
