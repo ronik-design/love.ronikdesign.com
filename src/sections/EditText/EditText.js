@@ -70,9 +70,14 @@ class EditText extends BaseComponent {
           >
           </Button>
         </div>
-        <TextInput onTextUpdate={this.props.onTextUpdate}
-                   handleClose={this.handleClose}
-        />
+        <div className='EditText__content'>
+          <div className='EditText__inner'>
+            <p className='EditText__preface'>Type something inspiring</p>
+            <TextInput onTextUpdate={this.props.onTextUpdate}
+                       handleClose={this.handleClose}
+            />
+          </div>
+        </div>
       </div>
     );
   }
