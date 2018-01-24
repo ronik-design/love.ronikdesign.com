@@ -3909,6 +3909,12 @@ quat-from-unit-vec3@^1.0.0:
     gl-quat "^1.0.0"
     gl-vec3 "^1.0.3"
 
+query-string@^2.3.0:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-2.4.2.tgz#7db0666420804baa92ae9f268962855a76143dfb"
+  dependencies:
+    strict-uri-encode "^1.0.0"
+
 query-string@^4.2.3:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.4.tgz#bbb693b9ca915c232515b228b1a02b609043dbeb"
@@ -4368,6 +4374,12 @@ set-blocking@~2.0.0:
 set-immediate-shim@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
+
+set-query-string@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/set-query-string/-/set-query-string-2.2.0.tgz#452521ea97ca965114d764b7bd20939ed0715fe7"
+  dependencies:
+    query-string "^2.3.0"
 
 setimmediate@^1.0.5:
   version "1.0.5"

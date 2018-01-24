@@ -4,6 +4,7 @@ const LiveShaderMaterial = require('../materials/LiveShaderMaterial');
 const honeyShader = require('../shaders/honey.shader');
 const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
+const queryString = require('query-string');
 
 // add fonts to preloader
 const helvetikerFont = assets.queue({
@@ -21,10 +22,15 @@ module.exports = class Text extends THREE.Object3D {
 
     this.loader = new THREE.FontLoader();
 
-    this.text = 'ronik';
+    const textFromQuery = queryString.parse(location.search).text;
+    if (textFromQuery) {
+      this.text = queryString.parse(location.search).text;
+    } else {
+      this.text = 'ronik';
+    }
+
     this.typeface = typefaceList[0];
     this.refreshText(this.typeface);
-
     this.hasAnimatedOnce = false;
   }
 

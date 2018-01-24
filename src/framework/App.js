@@ -4,6 +4,7 @@ const BaseComponent = require('../components/BaseComponent/BaseComponent');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
+const setQuery = require('set-query-string');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
@@ -23,7 +24,7 @@ class App extends BaseComponent {
     super(props);
 
     this.state = {
-      text: 'ronik',
+      text: '',
       isLoaded: false,
       isAltMaterial: false,
       section: 'Preloader'
@@ -84,6 +85,7 @@ class App extends BaseComponent {
 
   handleTextUpdate = text => {
     this.setState({text: text});
+    setQuery({text: text});
   }
 
   updateContent = section => {
