@@ -10,6 +10,11 @@ const helvetikerFont = assets.queue({
   url: 'assets/fonts/helvetiker.typeface.json'
 });
 
+const typefaceList = [
+  'helvetiker',
+  'aroly-regular'
+];
+
 module.exports = class Text extends THREE.Object3D {
   constructor () {
     super();
@@ -17,7 +22,8 @@ module.exports = class Text extends THREE.Object3D {
     this.loader = new THREE.FontLoader();
 
     this.text = 'ronik';
-    this.refreshText();
+    this.typeface = typefaceList[0];
+    this.refreshText(this.typeface);
 
     this.hasAnimatedOnce = false;
   }
@@ -105,12 +111,12 @@ module.exports = class Text extends THREE.Object3D {
     }
   }
 
-  refreshText() {
+  refreshText(typeface) {
     if (this.mesh) {
       this.remove(this.mesh);
     }
 
-    this.loader.load('assets/fonts/helvetiker.typeface.json', font => {
+    this.loader.load(`assets/fonts/${typeface}.typeface.json`, font => {
       this.createText(font);
     });
   }
@@ -127,7 +133,7 @@ module.exports = class Text extends THREE.Object3D {
     }
 
     this.text = newState.text;
-    this.refreshText();
+    this.refreshText(this.typeface);
   }
 
   update (dt = 0, time = 0) {
