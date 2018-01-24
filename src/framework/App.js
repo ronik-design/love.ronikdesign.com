@@ -26,9 +26,7 @@ class App extends BaseComponent {
       text: 'ronik',
       isLoaded: false,
       isAltMaterial: false,
-      section: 'Preloader',
-      isNew: false,
-      canControlCamera: false
+      section: 'Preloader'
     };
   }
 

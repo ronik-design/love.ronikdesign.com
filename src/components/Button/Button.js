@@ -33,10 +33,12 @@ class Button extends BaseComponent {
   }
 
   render () {
-    const {icon} = this.props;
+    const {icon, expandable, expanded} = this.props;
     const classes = classnames({
       'Button': true,
-      'hasIcon': icon
+      'hasIcon': icon,
+      'expandable': expandable,
+      'expanded': expanded
     });
     return (
       <button

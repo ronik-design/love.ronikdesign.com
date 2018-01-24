@@ -47,6 +47,7 @@ class Landing extends BaseComponent {
               onClick={this.props.onMaterialSwap}
               ref={ c => { this.colorButton = c; } }
               icon='color'
+              expandable
             >
               Swap colors
             </Button>
@@ -54,6 +55,7 @@ class Landing extends BaseComponent {
               onClick={this.props.onMaterialSwap}
               ref={ c => { this.objectsButton = c; } }
               icon='objects'
+              expandable
             >
               Swap scene
             </Button>
@@ -61,6 +63,7 @@ class Landing extends BaseComponent {
               onClick={() => this.handleChangeScene('EditText')}
               ref={ c => { this.textButton = c; } }
               icon='text'
+              expandable
             >
               Edit Text
             </Button>
@@ -69,6 +72,7 @@ class Landing extends BaseComponent {
             <Button
                 ref={ c => { this.shareButton = c; } }
                 icon='share'
+                expanded
             >
               Share
             </Button>

@@ -32,12 +32,22 @@
     fill: #fff;
   }
 
-  &:hover {
-    max-width: 40rem;
+  &.expanded {
+    max-width: initial;
 
     .ButtonText {
       opacity: 1;
-      transition-delay: 0.1s;
+    }
+  }
+
+  &.expandable {
+    &:hover {
+      max-width: 40rem;
+
+      .ButtonText {
+        opacity: 1;
+        transition-delay: 0.1s;
+      }
     }
   }
 
@@ -67,7 +77,7 @@
     // custom icon positions
     &Share {
       top: 1.3rem;
-      left: 1.4rem;
+      left: 2rem;
     }
 
     &Text {
@@ -93,6 +103,11 @@
     &Play {
       top: 1.4rem;
       left: 1.2rem;
+    }
+
+    &Close {
+      top: 1.5rem;
+      left: 1.5rem;
     }
   }
 }

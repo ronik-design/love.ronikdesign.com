@@ -45,6 +45,13 @@ const icons = {
         <path d="M190,37.236068 L190,50.763932 L203.527864,44 L190,37.236068 Z M208,44 L188,54 L188,34 L208,44 Z" id="Triangle" fillRule="nonzero"></path>
       </g>
     </svg>
+  ),
+  close: (
+    <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1">
+      <g id="100_IconGraveyard" stroke="none" stroke-width="1" fill="none" fillRule="evenodd" transform="translate(-578.000000, -26.000000)">
+        <path d="M587.071068,33.6568542 L593.435029,27.2928932 L594.849242,28.7071068 L588.485281,35.0710678 L595.556349,42.1421356 L594.142136,43.5563492 L587.071068,36.4852814 L580.707107,42.8492424 L579.292893,41.4350288 L585.656854,35.0710678 L578.585786,28 L580,26.5857864 L587.071068,33.6568542 Z" id="Combined-Shape" fill="#FFFFFF" fillRule="nonzero"></path>
+      </g>
+    </svg>
   )
 };
 

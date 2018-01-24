@@ -63,7 +63,12 @@ class EditText extends BaseComponent {
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
         <div style={buttonPosition}>
-          <Button onClick={this.handleClose} ref={ c => { this.closeButton = c; } }>Cancel</Button>
+          <Button onClick={this.handleClose}
+                  ref={ c => { this.closeButton = c; } }
+                  icon='close'
+                  expandable={false}
+          >
+          </Button>
         </div>
         <TextInput onTextUpdate={this.props.onTextUpdate}
                    handleClose={this.handleClose}
