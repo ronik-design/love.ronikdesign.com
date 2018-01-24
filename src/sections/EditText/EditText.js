@@ -10,8 +10,6 @@ const TextInput = require('../../components/TextInput/TextInput');
 class EditText extends BaseComponent {
   constructor (props) {
     super(props);
-    this.state = {
-    };
   }
 
   animateIn (opt = {}) {
@@ -39,7 +37,7 @@ class EditText extends BaseComponent {
         ...opt,
         autoAlpha: 0
       }),
-      animate.to(this.container, 2, {
+      animate.to(this.container, 0.5, {
         ...opt,
         ease: Expo.easeOut,
         y: 10
@@ -47,7 +45,7 @@ class EditText extends BaseComponent {
     ]);
   }
 
-  handleCancel = () => {
+  handleClose = () => {
     this.props.updateContent('Landing');
   }
 
@@ -65,11 +63,10 @@ class EditText extends BaseComponent {
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
         <div style={buttonPosition}>
-          <Button onClick={this.handleCancel} ref={ c => { this.closeButton = c; } }>Close</Button>
+          <Button onClick={this.handleClose} ref={ c => { this.closeButton = c; } }>Cancel</Button>
         </div>
         <TextInput onTextUpdate={this.props.onTextUpdate}
-                   ref={ input => { this.textInput = input } }
-                   handleCancel={this.handleCancel}
+                   handleClose={this.handleClose}
         />
       </div>
     );
