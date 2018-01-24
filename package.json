@@ -29,6 +29,7 @@
     "seed-random": "^2.2.0",
     "set-query-string": "^2.2.0",
     "simplex-noise": "^2.3.0",
+    "swearjar": "^0.2.0",
     "three": "^0.89.0",
     "touches": "^1.2.2",
     "tweenr": "^2.2.1",

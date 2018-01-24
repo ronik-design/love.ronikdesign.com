@@ -3,7 +3,6 @@ const { h, Component } = require('preact');
 const BaseComponent = require('../../components/BaseComponent/BaseComponent');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
-
 const Button = require('../../components/Button/Button');
 const TextInput = require('../../components/TextInput/TextInput');
 

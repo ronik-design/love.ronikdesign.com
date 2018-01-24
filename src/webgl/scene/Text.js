@@ -5,6 +5,7 @@ const honeyShader = require('../shaders/honey.shader');
 const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
 const queryString = require('query-string');
+const swearjar = require('swearjar');
 
 // add fonts to preloader
 const helvetikerFont = assets.queue({
@@ -24,7 +25,8 @@ module.exports = class Text extends THREE.Object3D {
 
     const textFromQuery = queryString.parse(location.search).text;
     if (textFromQuery) {
-      this.text = queryString.parse(location.search).text;
+      const queryIsProfane = swearjar.profane(textFromQuery);
+      queryIsProfane ? this.text = 'nice try' : this.text = textFromQuery;
     } else {
       this.text = 'ronik';
     }

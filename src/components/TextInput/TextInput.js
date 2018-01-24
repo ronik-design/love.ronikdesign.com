@@ -3,10 +3,14 @@ const { h, Component } = require('preact');
 const BaseComponent = require('../../components/BaseComponent/BaseComponent');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
+const swearjar = require('swearjar');
 
 class TextInput extends BaseComponent {
   constructor (props) {
     super(props);
+    this.state = {
+      isProfane: false
+    }
   }
 
   componentDidMount() {
@@ -20,10 +24,15 @@ class TextInput extends BaseComponent {
     if (e.keyCode === 27) {
       this.props.handleClose();
     }
+
+    const isProfane = swearjar.profane(this.input.value);
+    this.setState({isProfane: isProfane});
   }
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.isProfane) { return; }
+
     this.props.handleClose();
     this.props.onTextUpdate(this.input.value);
   }
@@ -31,6 +40,7 @@ class TextInput extends BaseComponent {
   render () {
     const classes = classnames({
       'TextInput': true,
+      'is-profane': this.state.isProfane
     });
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
