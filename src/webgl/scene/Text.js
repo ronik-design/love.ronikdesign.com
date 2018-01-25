@@ -4,8 +4,6 @@ const LiveShaderMaterial = require('../materials/LiveShaderMaterial');
 const honeyShader = require('../shaders/honey.shader');
 const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
-const queryString = require('query-string');
-const swearjar = require('swearjar');
 
 // add fonts to preloader
 const helvetikerFont = assets.queue({
