@@ -18,22 +18,13 @@ const typefaceList = [
 ];
 
 module.exports = class Text extends THREE.Object3D {
-  constructor () {
+  constructor (text, fontIndex) {
     super();
 
     this.loader = new THREE.FontLoader();
-
-    const textFromQuery = queryString.parse(location.search).text;
-    if (textFromQuery) {
-      const queryIsProfane = swearjar.profane(textFromQuery);
-      queryIsProfane ? this.text = 'nice try' : this.text = textFromQuery;
-    } else {
-      this.text = 'ronik';
-    }
-
-    this.typeface = typefaceList[0];
-    this.refreshText(this.typeface);
-    this.hasAnimatedOnce = false;
+    this.loader.load(`assets/fonts/${typefaceList[fontIndex]}.typeface.json`, font => {
+      this.createText(text, font);
+    });
   }
 
   animateIn (opt = {}) {
@@ -50,8 +41,7 @@ module.exports = class Text extends THREE.Object3D {
     });
   }
 
-  createText(font) {
-    const text = this.text;
+  createText(text, font) {
     const options = {
       font: font,
       size: 0.8,
@@ -112,36 +102,6 @@ module.exports = class Text extends THREE.Object3D {
     }
 
     this.add(this.mesh);
-
-    // prevent animation from being fired twice on first load
-    if (this.hasAnimatedOnce) {
-      this.animateIn();
-    }
-  }
-
-  refreshText(typeface) {
-    if (this.mesh) {
-      this.remove(this.mesh);
-    }
-
-    this.loader.load(`assets/fonts/${typeface}.typeface.json`, font => {
-      this.createText(font);
-    });
-  }
-
-  onAppDidUpdate (oldProps, oldState, newProps, newState) {
-    if (oldState.isLoaded === false) {
-      return;
-    } else {
-      this.hasAnimatedOnce = true;
-    }
-
-    if (oldState.text === newState.text) {
-      return;
-    }
-
-    this.text = newState.text;
-    this.refreshText(this.typeface);
   }
 
   update (dt = 0, time = 0) {
