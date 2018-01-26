@@ -50,6 +50,7 @@ class TextInput extends BaseComponent {
                  type="text"
                  placeholder="Start typing..."
                  onKeyUp={this.handleKeyUp}
+                 maxlength={36}
           />
           </form>
         </div>

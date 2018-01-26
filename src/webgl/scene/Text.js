@@ -12,6 +12,8 @@ const helvetikerFont = assets.queue({
 
 const typefaceList = [
   'helvetiker',
+  'stiff-staff',
+  'disclaimer',
   'aroly-regular'
 ];
 
@@ -70,7 +72,7 @@ module.exports = class Text extends THREE.Object3D {
     this.textGeo.computeBoundingBox();
     this.textGeo.computeVertexNormals();
 
-    // center text
+    // center text to origin
     this.mesh.position.x = -0.5 * ( this.textGeo.boundingBox.max.x - this.textGeo.boundingBox.min.x );
     this.mesh.position.y = -0.5 * ( this.textGeo.boundingBox.max.y - this.textGeo.boundingBox.min.y );
 
@@ -99,12 +101,27 @@ module.exports = class Text extends THREE.Object3D {
       }
     }
 
+    const box = new THREE.BoxHelper(this.mesh, 0xff0000);
+    this.add(box);
+
     this.add(this.mesh);
+
+    if (this.hasAnimatedOnce) {
+      this.animateIn();
+    }
   }
 
   update (dt = 0, time = 0) {
     // This function gets propagated down from the WebGL app to all children
     // this.rotation.y += dt * 0.1;
     this.material.uniforms.time.value = time * 0.5;
+  }
+
+  onAppDidUpdate (oldProps, oldState, newProps, newState) {
+    if (oldState.isLoaded === false) {
+      return;
+    } else {
+      this.hasAnimatedOnce = true;
+    }
   }
 };

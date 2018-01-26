@@ -15,7 +15,7 @@ const EditText = require('../sections/EditText/EditText');
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
-const Text = require('../webgl/scene/Text');
+const TextContainer = require('../webgl/scene/TextContainer');
 
 const { assets, webgl } = require('../context');
 
@@ -24,7 +24,7 @@ class App extends BaseComponent {
     super(props);
 
     this.state = {
-      text: '',
+      text: 'multiple line text is all the rage',
       isLoaded: false,
       isAltMaterial: false,
       section: 'Preloader'
@@ -75,7 +75,7 @@ class App extends BaseComponent {
 
       // Add any "WebGL components" here...
       // webgl.scene.add(new SpinningBox());
-      webgl.scene.add(new Text());
+      webgl.scene.add(new TextContainer(this.state.text));
     });
   }
 
