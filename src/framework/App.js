@@ -6,6 +6,8 @@ const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
 const setQuery = require('set-query-string');
 const materials = require('../constants/materials');
+const queryString = require('query-string');
+const swearjar = require('swearjar');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
@@ -33,6 +35,8 @@ class App extends BaseComponent {
       isAltMaterial: false,
       section: 'Preloader'
     };
+
+    this.updateStateFromQuery();
   }
 
   handlePreventDefault = ev => {
@@ -105,6 +109,21 @@ class App extends BaseComponent {
   updateContent = section => {
     this.getContent(section);
     this.setState({section: section});
+  }
+
+  updateStateFromQuery () {
+    const textFromQuery = queryString.parse(location.search);
+
+    if (textFromQuery.theme && parseInt(textFromQuery.theme) <= materials.length) {
+      this.setState({backgroundMaterial: parseInt(textFromQuery.theme)})
+    }
+
+    if (textFromQuery.text) {
+      const queryIsProfane = swearjar.profane(textFromQuery.text);
+      queryIsProfane ? this.setState({text: 'nice try'}) : this.setState({text: textFromQuery.text});
+    } else {
+      this.setState({text: 'ronik'});
+    }
   }
 
   getContent (section) {

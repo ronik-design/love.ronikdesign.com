@@ -8,7 +8,7 @@ module.exports = class Floor extends THREE.Object3D {
     const textFromQuery = queryString.parse(location.search).theme;
 
     if (textFromQuery && parseInt(textFromQuery) <= materials.length) {
-      this.materialIndex = textFromQuery;
+      this.materialIndex = parseInt(textFromQuery);
     } else {
       this.materialIndex = 0;
     }
