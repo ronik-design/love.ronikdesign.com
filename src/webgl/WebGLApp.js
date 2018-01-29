@@ -21,6 +21,9 @@ module.exports = class WebGLApp extends EventEmitter {
       failIfMajorPerformanceCaveat: true
     }, opt));
 
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
     this.renderer.sortObjects = false;
     this.canvas = this.renderer.domElement;
 

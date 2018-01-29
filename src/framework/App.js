@@ -16,6 +16,8 @@ const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
 const Text = require('../webgl/scene/Text');
+const Floor = require('../webgl/scene/Floor');
+const Lighting = require('../webgl/scene/Lighting');
 
 const { assets, webgl } = require('../context');
 
@@ -76,6 +78,8 @@ class App extends BaseComponent {
       // Add any "WebGL components" here...
       // webgl.scene.add(new SpinningBox());
       webgl.scene.add(new Text());
+      webgl.scene.add(new Floor());
+      webgl.scene.add(new Lighting());
     });
   }
 
