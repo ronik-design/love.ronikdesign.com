@@ -1,7 +1,5 @@
 const { assets } = require ('../../context');
 
-const LiveShaderMaterial = require('../materials/LiveShaderMaterial');
-const honeyShader = require('../shaders/honey.shader');
 const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
 const queryString = require('query-string');
@@ -37,10 +35,6 @@ module.exports = class Text extends THREE.Object3D {
   }
 
   animateIn (opt = {}) {
-    animate.to(this.material.uniforms.alpha, 2.0, {
-      ...opt,
-      value: 1
-    });
     animate.fromTo(this.rotation, 2.0, {
       x: -Math.PI / 2
     }, {
@@ -60,22 +54,16 @@ module.exports = class Text extends THREE.Object3D {
 
     this.textGeo = new THREE.TextGeometry(text, options);
 
-    this.material = new LiveShaderMaterial(honeyShader, {
-      transparent: true,
-      wireframe: true,
-      uniforms: {
-        alpha: { value: 0 },
-        time: { value: 0 },
-        colorA: { value: new THREE.Color('rgb(94,222,179)') },
-        colorB: { value: new THREE.Color('rgb(85,57,210)') }
-      }
-    });
+    this.materials = [
+      new THREE.MeshPhongMaterial({color: 0xffffff, flatShading: true}), // front
+      new THREE.MeshStandardMaterial({color: 0xffffff}) // side
+    ];
 
     this.altMaterial = new THREE.MeshNormalMaterial();
 
     this.mesh = new THREE.Mesh(
       this.textGeo,
-      this.material
+      this.materials
     );
 
     // compute sizes
@@ -110,6 +98,9 @@ module.exports = class Text extends THREE.Object3D {
         }
       }
     }
+
+    this.mesh.castShadow = true;
+    this.mesh.receiveShadow = false;
 
     this.add(this.mesh);
 
@@ -147,6 +138,6 @@ module.exports = class Text extends THREE.Object3D {
   update (dt = 0, time = 0) {
     // This function gets propagated down from the WebGL app to all children
     // this.rotation.y += dt * 0.1;
-    this.material.uniforms.time.value = time * 0.5;
+    // this.material.uniforms.time.value = time * 0.5;
   }
 };
