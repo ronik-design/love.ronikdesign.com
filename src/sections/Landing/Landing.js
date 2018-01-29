@@ -44,7 +44,7 @@ class Landing extends BaseComponent {
         <Controls>
           <div className="ControlsGroup">
             <Button
-              onClick={this.props.onMaterialSwap}
+              onClick={() => this.props.updateColors()}
               ref={ c => { this.colorButton = c; } }
               icon='color'
               expandable
@@ -52,7 +52,6 @@ class Landing extends BaseComponent {
               Swap colors
             </Button>
             <Button
-              onClick={this.props.onMaterialSwap}
               ref={ c => { this.objectsButton = c; } }
               icon='objects'
               expandable

@@ -50,14 +50,14 @@ module.exports = class WebGLApp extends EventEmitter {
     // setup a basic camera
     const fov = defined(opt.fov, 45);
     const near = defined(opt.near, 0.01);
-    const far = defined(opt.far, 100);
+    const far = defined(opt.far, 300);
     this.camera = new THREE.PerspectiveCamera(fov, 1, near, far);
 
     // set up a simple orbit controller
     this.controls = createOrbitControls(assign({
       element: this.canvas,
       parent: window,
-      distance: 4
+      distance: 10
     }, opt));
 
     this.time = 0;

@@ -5,6 +5,7 @@ const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
 const setQuery = require('set-query-string');
+const materials = require('../constants/materials');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
@@ -27,6 +28,7 @@ class App extends BaseComponent {
 
     this.state = {
       text: '',
+      backgroundMaterial: 0,
       isLoaded: false,
       isAltMaterial: false,
       section: 'Preloader'
@@ -83,8 +85,16 @@ class App extends BaseComponent {
     });
   }
 
-  handleMaterialSwap = () => {
-    this.setState({ isAltMaterial: !this.state.isAltMaterial });
+  handleUpdateColors = () => {
+    let textureIndex;
+    if (this.state.backgroundMaterial === materials.length - 1) {
+      textureIndex = 0;
+    } else {
+      textureIndex = this.state.backgroundMaterial + 1;
+    }
+
+    this.setState({backgroundMaterial: textureIndex});
+    setQuery({theme: textureIndex});
   }
 
   handleTextUpdate = text => {
@@ -105,7 +115,7 @@ class App extends BaseComponent {
       case 'EditText': return <EditText key='EditText' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent}/>;
 
       default:
-      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} />;
+      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors}/>;
     }
   }
 
