@@ -1,9 +1,11 @@
+const animate = require('@jam3/gsap-promise');
+
 module.exports = class Floor extends THREE.Object3D {
   constructor (props) {
     super();
 
-    this.geometry = new THREE.PlaneGeometry(100, 100, 1);
-    this.material = new THREE.MeshStandardMaterial({roughness: 0.9});
+    this.geometry = new THREE.PlaneGeometry(10, 10, 3);
+    this.material = new THREE.MeshBasicMaterial({color: 0x4e4e4e, wireframe: true});
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
@@ -13,5 +15,24 @@ module.exports = class Floor extends THREE.Object3D {
     this.position.y = -3;
 
     this.add(this.mesh);
+  }
+
+  animateIn () {
+    animate.fromTo(this.rotation, 2.0, {
+     z: Math.PI * 2
+    }, {
+      z: 0,
+      ease: Expo.easeOut
+    });
+    animate.fromTo(this.scale, 4.0, {
+      x: 0,
+      y: 0,
+      z: 0
+    }, {
+      x: 1,
+      y: 1,
+      z: 1,
+      ease: Expo.easeOut
+    });
   }
 };

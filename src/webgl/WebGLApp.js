@@ -38,7 +38,7 @@ module.exports = class WebGLApp extends EventEmitter {
 
     // default background color
     const background = defined(opt.background, '#000');
-    const backgroundAlpha = defined(opt.backgroundAlpha, 1);
+    const backgroundAlpha = defined(opt.backgroundAlpha, 0);
     this.renderer.setClearColor(background, backgroundAlpha);
 
     // clamp pixel ratio for performance
@@ -58,7 +58,7 @@ module.exports = class WebGLApp extends EventEmitter {
       element: this.canvas,
       parent: window,
       distance: 8,
-      distanceBounds: [8, 16]
+      distanceBounds: [4, 16]
     }, opt));
 
     this.time = 0;

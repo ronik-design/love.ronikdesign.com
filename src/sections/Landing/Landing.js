@@ -16,18 +16,16 @@ class Landing extends BaseComponent {
   animateIn () {
     return Promise.all([
       this.colorButton.animateIn({ delay: 0.3 }),
-      this.objectsButton.animateIn({ delay: 0.5 }),
-      this.textButton.animateIn({ delay: 0.7 }),
-      this.shareButton.animateIn({ delay: 0.9 }),
+      this.textButton.animateIn({ delay: 0.5 }),
+      this.shareButton.animateIn({ delay: 0.7 }),
     ]);
   }
 
   animateOut () {
     return Promise.all([
       this.colorButton.animateOut({ delay: 0.3 }),
-      this.objectsButton.animateOut({ delay: 0.5 }),
-      this.textButton.animateOut({ delay: 0.7 }),
-      this.shareButton.animateOut({ delay: 0.9 }),
+      this.textButton.animateOut({ delay: 0.5 }),
+      this.shareButton.animateOut({ delay: 0.7 }),
     ]);
   }
 
@@ -50,13 +48,6 @@ class Landing extends BaseComponent {
               expandable
             >
               Swap colors
-            </Button>
-            <Button
-              ref={ c => { this.objectsButton = c; } }
-              icon='objects'
-              expandable
-            >
-              Swap scene
             </Button>
             <Button
               onClick={() => this.handleChangeScene('EditText')}
