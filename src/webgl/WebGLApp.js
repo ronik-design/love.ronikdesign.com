@@ -57,7 +57,8 @@ module.exports = class WebGLApp extends EventEmitter {
     this.controls = createOrbitControls(assign({
       element: this.canvas,
       parent: window,
-      distance: 10
+      distance: 8,
+      distanceBounds: [8, 16]
     }, opt));
 
     this.time = 0;

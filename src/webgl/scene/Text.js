@@ -12,7 +12,8 @@ const helvetikerFont = assets.queue({
 
 const typefaceList = [
   'helvetiker',
-  'aroly-regular'
+  'aroly-regular',
+  'intro-black'
 ];
 
 module.exports = class Text extends THREE.Object3D {
@@ -28,8 +29,7 @@ module.exports = class Text extends THREE.Object3D {
     } else {
       this.text = 'ronik';
     }
-
-    this.typeface = typefaceList[0];
+    this.typeface = typefaceList[2];
     this.refreshText(this.typeface);
     this.hasAnimatedOnce = false;
   }
@@ -49,14 +49,14 @@ module.exports = class Text extends THREE.Object3D {
     const options = {
       font: font,
       size: 0.8,
-      height: 0.2
+      height: 0.4
     };
 
     this.textGeo = new THREE.TextGeometry(text, options);
 
     this.materials = [
       new THREE.MeshPhongMaterial({color: 0xffffff, flatShading: true}), // front
-      new THREE.MeshStandardMaterial({color: 0xffffff}) // side
+      new THREE.MeshStandardMaterial() // side
     ];
 
     this.altMaterial = new THREE.MeshNormalMaterial();
