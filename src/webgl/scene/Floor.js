@@ -1,19 +1,8 @@
 const materials = require('../../constants/materials');
-const queryString = require('query-string');
 
 module.exports = class Floor extends THREE.Object3D {
   constructor (props) {
     super();
-
-    const textFromQuery = queryString.parse(location.search).theme;
-
-    if (textFromQuery && parseInt(textFromQuery) <= materials.length) {
-      this.materialIndex = parseInt(textFromQuery);
-    } else {
-      this.materialIndex = 0;
-    }
-
-    this.updateTexture();
   }
 
   updateTexture() {
@@ -57,6 +46,11 @@ module.exports = class Floor extends THREE.Object3D {
   }
 
   onAppDidUpdate (oldProps, oldState, newProps, newState) {
+    if (oldState.isLoaded !== newState.isLoaded) {
+      this.materialIndex = newState.backgroundMaterial;
+      this.updateTexture();
+    }
+
     if (oldState.backgroundMaterial !== newState.backgroundMaterial) {
       this.materialIndex = newState.backgroundMaterial;
       this.updateTexture();
