@@ -5,7 +5,7 @@ const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
 const setQuery = require('set-query-string');
-const materials = require('../constants/materials');
+const colors = require('../constants/colors');
 const queryString = require('query-string');
 const swearjar = require('swearjar');
 const copy = require('copy-to-clipboard');
@@ -32,7 +32,7 @@ class App extends BaseComponent {
 
     this.state = {
       text: '',
-      backgroundMaterial: 0,
+      theme: 0,
       isLoaded: false,
       isAltMaterial: false,
       section: 'Preloader'
@@ -85,23 +85,24 @@ class App extends BaseComponent {
 
       // Add any "WebGL components" here...
       // webgl.scene.add(new SpinningBox());
-      webgl.scene.add(new Text());
+      webgl.scene.add(new Text(this.state.theme));
       // webgl.scene.add(new Environment());
       // webgl.scene.add(new Lighting());
       webgl.scene.add(new Floor());
     });
   }
 
-  handleUpdateColors ()  {
-    let textureIndex;
-    if (this.state.backgroundMaterial === materials.length - 1) {
-      textureIndex = 0;
+  handleUpdateColors = () => {
+    let colorIndex;
+
+    if (this.state.theme === colors.length - 1) {
+      colorIndex = 0;
     } else {
-      textureIndex = this.state.backgroundMaterial + 1;
+      colorIndex = this.state.theme + 1;
     }
 
-    this.setState({backgroundMaterial: textureIndex});
-    setQuery({theme: textureIndex});
+    this.setState({theme: colorIndex});
+    setQuery({theme: colorIndex});
   }
 
   handleTextUpdate = text => {
@@ -121,8 +122,8 @@ class App extends BaseComponent {
   updateStateFromQuery () {
     const textFromQuery = queryString.parse(location.search);
 
-    if (textFromQuery.theme && parseInt(textFromQuery.theme) <= materials.length) {
-      this.setState({backgroundMaterial: parseInt(textFromQuery.theme)})
+    if (textFromQuery.theme && parseInt(textFromQuery.theme) <= colors.length) {
+      this.setState({theme: parseInt(textFromQuery.theme)});
     }
 
     if (textFromQuery.text) {

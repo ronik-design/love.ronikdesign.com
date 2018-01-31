@@ -6,6 +6,7 @@ const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
 const queryString = require('query-string');
 const swearjar = require('swearjar');
+const colors = require('../../constants/colors');
 
 // add fonts to preloader
 const helvetikerFont = assets.queue({
@@ -19,7 +20,7 @@ const typefaceList = [
 ];
 
 module.exports = class Text extends THREE.Object3D {
-  constructor () {
+  constructor (initialState) {
     super();
 
     this.loader = new THREE.FontLoader();
@@ -32,8 +33,10 @@ module.exports = class Text extends THREE.Object3D {
       this.text = 'ronik';
     }
     this.typeface = typefaceList[2];
+    this.colorIndex = initialState;
+    this.colorSet = colors[this.colorIndex];
     this.refreshText(this.typeface);
-    this.hasAnimatedOnce = false;
+    this.shouldAnimate = false;
   }
 
   animateIn (opt = {}) {
@@ -60,17 +63,6 @@ module.exports = class Text extends THREE.Object3D {
 
     this.textGeo = new THREE.TextGeometry(text, options);
 
-    this.material = new LiveShaderMaterial(honeyShader, {
-      transparent: true,
-      wireframe: true,
-      uniforms: {
-        alpha: { value: 0 },
-        time: { value: 0 },
-        colorA: { value: new THREE.Color('rgb(94,222,179)') },
-        colorB: { value: new THREE.Color('rgb(85,57,210)') }
-      }
-    });
-
     this.materials = [
       new THREE.MeshBasicMaterial({color: 0x000000, flatShading: true}), // front
       new LiveShaderMaterial(honeyShader, {
@@ -79,8 +71,8 @@ module.exports = class Text extends THREE.Object3D {
         uniforms: {
           alpha: { value: 0 },
           time: { value: 0 },
-          colorA: { value: new THREE.Color('rgb(94,222,179)') },
-          colorB: { value: new THREE.Color('rgb(85,57,210)') }
+          colorA: { value: new THREE.Color(this.colorSet[0]) },
+          colorB: { value: new THREE.Color(this.colorSet[1]) }
         }
       })
     ];
@@ -131,7 +123,7 @@ module.exports = class Text extends THREE.Object3D {
     this.add(this.mesh);
 
     // prevent animation from being fired twice on first load
-    if (this.hasAnimatedOnce) {
+    if (this.shouldAnimate) {
       this.animateIn();
     }
   }
@@ -150,11 +142,12 @@ module.exports = class Text extends THREE.Object3D {
     if (oldState.isLoaded === false) {
       return;
     } else {
-      this.hasAnimatedOnce = true;
+      this.shouldAnimate = true;
     }
 
-    if (oldState.text === newState.text) {
-      return;
+    if (oldState.theme !== newState.theme) {
+      this.colorSet = colors[newState.theme];
+      this.refreshText(this.typeface);
     }
 
     this.text = newState.text;
