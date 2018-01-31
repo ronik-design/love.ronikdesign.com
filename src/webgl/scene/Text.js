@@ -72,7 +72,7 @@ module.exports = class Text extends THREE.Object3D {
     });
 
     this.materials = [
-      new THREE.MeshPhongMaterial({color: 0x000000, flatShading: true}), // front
+      new THREE.MeshBasicMaterial({color: 0x000000, flatShading: true}), // front
       new LiveShaderMaterial(honeyShader, {
         transparent: true,
         wireframe: true,

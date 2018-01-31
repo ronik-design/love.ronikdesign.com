@@ -3765,6 +3765,12 @@ postcss@^5.0.0, postcss@^5.2.16:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
+postprocessing@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-4.1.0.tgz#67d5bd004fde4a7921cf82c72c873ca89633d957"
+  dependencies:
+    three "0.89.x"
+
 preact-transition-group@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/preact-transition-group/-/preact-transition-group-1.1.1.tgz#f0a49327ea515ece34ea2be864c4a7d29e5d6e10"
@@ -4881,7 +4887,7 @@ text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-three@^0.89.0:
+three@0.89.x, three@^0.89.0:
   version "0.89.0"
   resolved "https://registry.yarnpkg.com/three/-/three-0.89.0.tgz#4442d819a6168871b8d2cb37ad12a24310c170f5"
 

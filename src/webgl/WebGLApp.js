@@ -1,9 +1,11 @@
+const { Clock } = require('three');
 const { EventEmitter } = require('events');
 const assign = require('object-assign');
 const defined = require('defined');
 const rightNow = require('right-now');
 const createOrbitControls = require('orbit-controls');
 const createTouches = require('touches');
+const { EffectComposer, RenderPass, BloomPass } = require('postprocessing');
 
 const tmpTarget = new THREE.Vector3();
 
@@ -72,6 +74,15 @@ module.exports = class WebGLApp extends EventEmitter {
     window.addEventListener('resize', () => this.resize());
     window.addEventListener('orientationchange', () => this.resize());
 
+    this.composer = new EffectComposer(this.renderer);
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+
+    const pass = new BloomPass({resolution: 0.3, kernelSize: 1, intensity: 2.0, distinction: 0.1});
+    pass.renderToScreen = true;
+
+    this.composer.addPass(pass);
+    this.clock = new Clock();
+
     // force an initial resize event
     this.resize();
   }
@@ -104,7 +115,7 @@ module.exports = class WebGLApp extends EventEmitter {
     }
 
     // setup new size & update camera aspect if necessary
-    this.renderer.setSize(width, height);
+    this.composer.setSize(width, height);
     if (this.camera.isPerspectiveCamera) {
       this.camera.aspect = width / height;
     }
@@ -152,7 +163,8 @@ module.exports = class WebGLApp extends EventEmitter {
   }
 
   draw () {
-    this.renderer.render(this.scene, this.camera);
+    // this.renderer.render(this.scene, this.camera);
+    this.composer.render(this.clock.getDelta());
     return this;
   }
 

@@ -22,6 +22,7 @@
     "map-limit": "0.0.1",
     "object-assign": "^4.1.1",
     "orbit-controls": "^1.2.4",
+    "postprocessing": "^4.1.0",
     "preact": "^8.2.7",
     "preact-transition-group": "^1.1.1",
     "query-string": "^5.0.1",
