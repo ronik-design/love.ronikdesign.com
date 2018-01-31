@@ -29,10 +29,6 @@ class Landing extends BaseComponent {
     ]);
   }
 
-  handleChangeScene(scene) {
-    this.props.updateContent(scene);
-  }
-
   render () {
     const classes = classnames({
       'Landing': true
@@ -50,7 +46,7 @@ class Landing extends BaseComponent {
               Swap colors
             </Button>
             <Button
-              onClick={() => this.handleChangeScene('EditText')}
+              onClick={() => this.props.updateContent('EditText')}
               ref={ c => { this.textButton = c; } }
               icon='text'
               expandable
@@ -60,9 +56,10 @@ class Landing extends BaseComponent {
           </div>
           <div className="ControlsGroup">
             <Button
-                ref={ c => { this.shareButton = c; } }
-                icon='share'
-                expanded
+              onClick={() => this.props.copyToClipboard()}
+              ref={ c => { this.shareButton = c; } }
+              icon='share'
+              expanded
             >
               Share
             </Button>

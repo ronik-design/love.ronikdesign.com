@@ -8,6 +8,7 @@ const setQuery = require('set-query-string');
 const materials = require('../constants/materials');
 const queryString = require('query-string');
 const swearjar = require('swearjar');
+const copy = require('copy-to-clipboard');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
@@ -91,7 +92,7 @@ class App extends BaseComponent {
     });
   }
 
-  handleUpdateColors = () => {
+  handleUpdateColors ()  {
     let textureIndex;
     if (this.state.backgroundMaterial === materials.length - 1) {
       textureIndex = 0;
@@ -111,6 +112,10 @@ class App extends BaseComponent {
   updateContent = section => {
     this.getContent(section);
     this.setState({section: section});
+  }
+
+  handleCopyToClipboard () {
+    copy(window.location.href);
   }
 
   updateStateFromQuery () {
@@ -136,7 +141,7 @@ class App extends BaseComponent {
       case 'EditText': return <EditText key='EditText' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent}/>;
 
       default:
-      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors}/>;
+      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors} copyToClipboard={this.handleCopyToClipboard}/>;
     }
   }
 

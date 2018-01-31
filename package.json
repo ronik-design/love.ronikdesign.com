@@ -15,6 +15,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "clamp": "^1.0.1",
     "classnames": "^2.2.5",
+    "copy-to-clipboard": "^3.0.8",
     "defined": "^1.0.0",
     "glslify-hex": "^2.1.1",
     "load-img": "^1.0.0",
