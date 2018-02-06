@@ -42,11 +42,13 @@
 
   &.expandable {
     &:hover {
-      max-width: 40rem;
+      @media screen and (min-width: 769px) {
+        max-width: 40rem;
 
-      .ButtonText {
-        opacity: 1;
-        transition-delay: 0.1s;
+        .ButtonText {
+          opacity: 1;
+          transition-delay: 0.1s;
+        }
       }
     }
   }
