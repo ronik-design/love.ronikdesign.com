@@ -36,7 +36,7 @@ module.exports = class Text extends THREE.Object3D {
     this.colorIndex = initialState;
     this.colorSet = colors[this.colorIndex];
     this.refreshText(this.typeface);
-    this.shouldAnimate = false;
+    this.shouldUpdate = false;
   }
 
   animateIn (opt = {}) {
@@ -123,8 +123,8 @@ module.exports = class Text extends THREE.Object3D {
     this.add(this.mesh);
 
     // prevent animation from being fired twice on first load
-    if (this.shouldAnimate) {
-      this.animateIn();
+    if (this.shouldUpdate) {
+      this.materials[1].uniforms.alpha.value = 1;
     }
   }
 
@@ -142,7 +142,7 @@ module.exports = class Text extends THREE.Object3D {
     if (oldState.isLoaded === false) {
       return;
     } else {
-      this.shouldAnimate = true;
+      this.shouldUpdate = true;
     }
 
     if (oldState.theme !== newState.theme) {
@@ -150,8 +150,10 @@ module.exports = class Text extends THREE.Object3D {
       this.refreshText(this.typeface);
     }
 
-    this.text = newState.text;
-    this.refreshText(this.typeface);
+    if (oldState.text !== newState.text) {
+      this.text = newState.text;
+      this.refreshText(this.typeface);
+    }
   }
 
   update (dt = 0, time = 0) {

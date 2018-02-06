@@ -1,7 +1,7 @@
 const animate = require('@jam3/gsap-promise');
 
 module.exports = class Floor extends THREE.Object3D {
-  constructor (props) {
+  constructor (position) {
     super();
 
     this.geometry = new THREE.PlaneGeometry(10, 10, 3);
@@ -12,7 +12,7 @@ module.exports = class Floor extends THREE.Object3D {
     this.mesh.receiveShadow = true;
 
     this.rotation.x = - Math.PI / 2;
-    this.position.y = -3;
+    this.position.y = position;
 
     this.add(this.mesh);
   }

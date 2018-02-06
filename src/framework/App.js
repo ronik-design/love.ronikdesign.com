@@ -23,6 +23,8 @@ const Text = require('../webgl/scene/Text');
 const Environment = require('../webgl/scene/Environment');
 const Lighting = require('../webgl/scene/Lighting');
 const Floor = require('../webgl/scene/Floor');
+const Spinner = require('../webgl/scene/Spinner');
+const TriangleFetti = require('../webgl/scene/TriangleFetti');
 
 const { assets, webgl } = require('../context');
 
@@ -84,11 +86,9 @@ class App extends BaseComponent {
       }, this.props.fakePreloadTime);
 
       // Add any "WebGL components" here...
-      // webgl.scene.add(new SpinningBox());
       webgl.scene.add(new Text(this.state.theme));
-      // webgl.scene.add(new Environment());
-      // webgl.scene.add(new Lighting());
-      webgl.scene.add(new Floor());
+      webgl.scene.add(new Spinner(this.state.theme, -10));
+      webgl.scene.add(new TriangleFetti(3));
     });
   }
 
