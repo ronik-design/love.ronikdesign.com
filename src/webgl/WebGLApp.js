@@ -70,6 +70,15 @@ module.exports = class WebGLApp extends EventEmitter {
 
     this.scene = new THREE.Scene();
 
+    // fog
+    this.scene.fog = new THREE.Fog(0x000000, 0, 60);
+
+    // grid
+    // const gridColor = 0xff00ff;
+    // const grid = new THREE.GridHelper(16, 16, gridColor, gridColor);
+    // grid.position.y = -3;
+    // this.scene.add(grid);
+
     // handle resize events
     window.addEventListener('resize', () => this.resize());
     window.addEventListener('orientationchange', () => this.resize());
@@ -77,7 +86,7 @@ module.exports = class WebGLApp extends EventEmitter {
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
 
-    const pass = new BloomPass({resolution: 0.3, kernelSize: 1, intensity: 2.0, distinction: 0.1});
+    const pass = new BloomPass({resolution: 0.3, kernelSize: 1, intensity: 3.4, distinction: 0.1});
     pass.renderToScreen = true;
 
     this.composer.addPass(pass);
