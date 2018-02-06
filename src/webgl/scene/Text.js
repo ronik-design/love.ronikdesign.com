@@ -9,8 +9,8 @@ const swearjar = require('swearjar');
 const colors = require('../../constants/colors');
 
 // add fonts to preloader
-const helvetikerFont = assets.queue({
-  url: 'assets/fonts/helvetiker.typeface.json'
+const introFont = assets.queue({
+  url: 'assets/fonts/intro-black.typeface.json'
 });
 
 const typefaceList = [
@@ -20,36 +20,35 @@ const typefaceList = [
 ];
 
 module.exports = class Text extends THREE.Object3D {
-  constructor (initialState) {
+  constructor (color, text = 'ronik', position = [0, 0, 0], delay = 0) {
     super();
 
     this.loader = new THREE.FontLoader();
 
-    const textFromQuery = queryString.parse(location.search).text;
-    if (textFromQuery) {
-      const queryIsProfane = swearjar.profane(textFromQuery);
-      queryIsProfane ? this.text = 'nice try' : this.text = textFromQuery;
-    } else {
-      this.text = 'ronik';
-    }
+    this.text = text;
     this.typeface = typefaceList[2];
-    this.colorIndex = initialState;
+    this.colorIndex = color;
     this.colorSet = colors[this.colorIndex];
     this.refreshText(this.typeface);
     this.shouldUpdate = false;
+
+    this.position.x = position[0];
+    this.position.y = position[1];
+    this.position.z = position[2];
+    this.animationDelay = delay;
   }
 
-  animateIn (opt = {}) {
+  animateIn () {
     animate.to(this.materials[1].uniforms.alpha, 2.0, {
-      ...opt,
-      value: 1
+      value: 1,
+      delay: this.animationDelay
     });
     animate.fromTo(this.rotation, 2.0, {
       x: -Math.PI / 2
     }, {
-      ...opt,
       x: 0,
-      ease: Expo.easeOut
+      ease: Expo.easeOut,
+      delay: this.animationDelay
     });
   }
 
@@ -147,11 +146,6 @@ module.exports = class Text extends THREE.Object3D {
 
     if (oldState.theme !== newState.theme) {
       this.colorSet = colors[newState.theme];
-      this.refreshText(this.typeface);
-    }
-
-    if (oldState.text !== newState.text) {
-      this.text = newState.text;
       this.refreshText(this.typeface);
     }
   }

@@ -9,10 +9,10 @@ const colors = require('../../constants/colors');
 // we need to define this outside of our class, otherwise
 // it won't get included in the preloader until *after* its done loading
 const gltfKey = assets.queue({
-  url: 'assets/models/spinner.gltf'
+  url: 'assets/models/heart.gltf'
 });
 
-module.exports = class Spinner extends THREE.Object3D {
+module.exports = class Heart extends THREE.Object3D {
   constructor (initialState, position, delay = 0) {
     super();
 
@@ -72,18 +72,25 @@ module.exports = class Spinner extends THREE.Object3D {
       delay: this.animationDelay
     });
     animate.fromTo(this.rotation, 2.0, {
-      x: -Math.PI / 4
+      x: -Math.PI / 2
     }, {
       ...opt,
-      x: Math.PI / 2,
+      x: 0,
       ease: Expo.easeOut,
-      delay: this.animationDelay
+      delay: this.animationDelay,
     });
+    animate.to(this.scale, 0.4, {
+      x: 0.8,
+      y: 0.8,
+      z: 0.8,
+      repeat: -1,
+      yoyo: true,
+      delay: 0.4,
+      ease: Expo.easeInOut
+    })
   }
 
   update (dt = 0, time = 0) {
-    // This function gets propagated down from the WebGL app to all children
-    this.rotation.y += dt * 0.5;
     this.material.uniforms.time.value = time;
   }
 };

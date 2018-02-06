@@ -8,7 +8,7 @@ module.exports = class TriangleFetti extends THREE.Object3D {
   constructor () {
     super();
 
-    this.generateFetti(50);
+    this.generateFetti(30);
   }
 
   generateFetti = count => {
@@ -42,9 +42,20 @@ module.exports = class TriangleFetti extends THREE.Object3D {
       z: 1,
       ease: Back.easeOut
     });
+    animate.fromTo(this.rotation, 15.0, {
+      x: 15 * THREE.Math.DEG2RAD,
+      y: 40 * THREE.Math.DEG2RAD,
+      z: 25 * THREE.Math.DEG2RAD,
+    }, {
+      x: 0,
+      y: 0,
+      z: 0,
+      ease: Expo.easeInOut
+    });
   }
 
   update(dt = 0) {
+    this.rotation.y += dt * -0.05;
     if (this.children) {
       for (let j = 0; j < this.children.length; j++) {
         this.children[j].rotation.y += dt * 0.5;

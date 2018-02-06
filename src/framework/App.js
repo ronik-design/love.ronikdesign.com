@@ -25,6 +25,7 @@ const Lighting = require('../webgl/scene/Lighting');
 const Floor = require('../webgl/scene/Floor');
 const Spinner = require('../webgl/scene/Spinner');
 const TriangleFetti = require('../webgl/scene/TriangleFetti');
+const Heart = require('../webgl/scene/Heart');
 
 const { assets, webgl } = require('../context');
 
@@ -36,7 +37,6 @@ class App extends BaseComponent {
       text: '',
       theme: 0,
       isLoaded: false,
-      isAltMaterial: false,
       section: 'Preloader'
     };
 
@@ -56,7 +56,7 @@ class App extends BaseComponent {
       webgl.draw();
 
       // trigger initial animation in of content
-      webgl.animateIn({ delay: 0.5 });
+      webgl.animateIn({ delay: 0.9 });
     }
 
     // propagate through entire scene graph any app changes
@@ -86,9 +86,13 @@ class App extends BaseComponent {
       }, this.props.fakePreloadTime);
 
       // Add any "WebGL components" here...
-      webgl.scene.add(new Text(this.state.theme));
-      webgl.scene.add(new Spinner(this.state.theme, -10));
+      webgl.scene.add(new Text(this.state.theme, 'Happy', [0, 1.5, 0], 3));
+      webgl.scene.add(new Text(this.state.theme, 'Valentines', [0, 0, 0], 3.3));
+      webgl.scene.add(new Text(this.state.theme, 'Day', [0, -1.5, 0], 3.6));
+      webgl.scene.add(new Heart(this.state.theme, -10, 4));
+      // webgl.scene.add(new Spinner(this.state.theme, -10, 4));
       webgl.scene.add(new TriangleFetti(3));
+      // webgl.scene.add(new AnimationTest());
     });
   }
 
