@@ -6,8 +6,8 @@ const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
 const setQuery = require('set-query-string');
 const colors = require('../constants/colors');
+const messages = require('../constants/messages');
 const queryString = require('query-string');
-const swearjar = require('swearjar');
 const copy = require('copy-to-clipboard');
 
 // DOM Sections
@@ -20,10 +20,7 @@ const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
 const Text = require('../webgl/scene/Text');
-const Environment = require('../webgl/scene/Environment');
-const Lighting = require('../webgl/scene/Lighting');
-const Floor = require('../webgl/scene/Floor');
-const Spinner = require('../webgl/scene/Spinner');
+const TextContainer = require('../webgl/scene/TextContainer');
 const TriangleFetti = require('../webgl/scene/TriangleFetti');
 const Heart = require('../webgl/scene/Heart');
 
@@ -34,8 +31,8 @@ class App extends BaseComponent {
     super(props);
 
     this.state = {
-      text: '',
       theme: 0,
+      message: messages[0],
       isLoaded: false,
       section: 'Preloader'
     };
@@ -86,10 +83,8 @@ class App extends BaseComponent {
       }, this.props.fakePreloadTime);
 
       // Add any "WebGL components" here...
-      webgl.scene.add(new Text(this.state.theme, 'Happy', [0, 1.5, 0], 3));
-      webgl.scene.add(new Text(this.state.theme, 'Valentines', [0, 0, 0], 3.3));
-      webgl.scene.add(new Text(this.state.theme, 'Day', [0, -1.5, 0], 3.6));
-      webgl.scene.add(new Heart(this.state.theme, -10, 4));
+      webgl.scene.add(new Heart(this.state.theme, -8, 3.5));
+      webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
       // webgl.scene.add(new Spinner(this.state.theme, -10, 4));
       webgl.scene.add(new TriangleFetti(3));
       // webgl.scene.add(new AnimationTest());
@@ -130,11 +125,8 @@ class App extends BaseComponent {
       this.setState({theme: parseInt(textFromQuery.theme)});
     }
 
-    if (textFromQuery.text) {
-      const queryIsProfane = swearjar.profane(textFromQuery.text);
-      queryIsProfane ? this.setState({text: 'nice try'}) : this.setState({text: textFromQuery.text});
-    } else {
-      this.setState({text: 'ronik'});
+    if (textFromQuery.m) {
+      this.setState({message: messages[parseInt(textFromQuery.m)]})
     }
   }
 

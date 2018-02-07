@@ -71,8 +71,8 @@ module.exports = class Heart extends THREE.Object3D {
       value: 1,
       delay: this.animationDelay
     });
-    animate.fromTo(this.rotation, 2.0, {
-      x: -Math.PI / 2
+    animate.fromTo(this.rotation, 1.0, {
+      x: 90 * THREE.Math.DEG2RAD,
     }, {
       ...opt,
       x: 0,

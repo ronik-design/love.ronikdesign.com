@@ -4,20 +4,12 @@ const LiveShaderMaterial = require('../materials/LiveShaderMaterial');
 const honeyShader = require('../shaders/honey.shader');
 const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
-const queryString = require('query-string');
-const swearjar = require('swearjar');
 const colors = require('../../constants/colors');
 
 // add fonts to preloader
 const introFont = assets.queue({
   url: 'assets/fonts/intro-black.typeface.json'
 });
-
-const typefaceList = [
-  'helvetiker',
-  'aroly-regular',
-  'intro-black'
-];
 
 module.exports = class Text extends THREE.Object3D {
   constructor (color, text = 'ronik', position = [0, 0, 0], delay = 0) {
@@ -26,7 +18,7 @@ module.exports = class Text extends THREE.Object3D {
     this.loader = new THREE.FontLoader();
 
     this.text = text;
-    this.typeface = typefaceList[2];
+    this.typeface = 'intro-black';
     this.colorIndex = color;
     this.colorSet = colors[this.colorIndex];
     this.refreshText(this.typeface);

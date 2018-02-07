@@ -86,7 +86,7 @@ module.exports = class WebGLApp extends EventEmitter {
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
 
-    const pass = new BloomPass({resolution: 0.3, kernelSize: 1, intensity: 3.4, distinction: 0.1});
+    const pass = new BloomPass({resolution: 0.2, kernelSize: 1, intensity: 2.5, distinction: 0.1});
     pass.renderToScreen = true;
 
     this.composer.addPass(pass);
