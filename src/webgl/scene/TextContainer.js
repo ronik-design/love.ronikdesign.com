@@ -1,11 +1,11 @@
 const Text = require('./Text');
-const queryString = require('query-string');
+const messages = require('../../constants/messages');
 
 module.exports = class TextContainer extends THREE.Object3D {
   constructor (color, text) {
     super();
 
-    this.text = text;
+    this.text = messages[text];
     this.color = color;
 
     this.refreshText(this.text);
@@ -46,10 +46,10 @@ module.exports = class TextContainer extends THREE.Object3D {
   }
 
   onAppDidUpdate (oldProps, oldState, newProps, newState) {
-    if (oldState.text === newState.text) {
+    if (oldState.message === newState.message) {
       return;
     }
 
-    this.refreshText(newState.text);
+    this.refreshText(messages[newState.message]);
   }
 };

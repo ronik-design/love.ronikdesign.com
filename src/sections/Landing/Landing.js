@@ -40,12 +40,12 @@ class Landing extends BaseComponent {
           </div>
           <div className="ControlsGroup">
             <Button
-              onClick={() => this.props.copyToClipboard()}
+              onClick={() => this.props.updateContent('Share')}
               ref={ c => { this.shareButton = c; } }
               icon='share'
               expanded
             >
-              Send your own
+              Spread the love
             </Button>
           </div>
         </Controls>

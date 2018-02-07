@@ -14,6 +14,7 @@ const copy = require('copy-to-clipboard');
 const Landing = require('../sections/Landing/Landing');
 const Preloader = require('../sections/Preloader/Preloader');
 const EditText = require('../sections/EditText/EditText');
+const Share = require('../sections/Share/Share');
 
 // WebGL canvas component
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
@@ -32,7 +33,7 @@ class App extends BaseComponent {
 
     this.state = {
       theme: 0,
-      message: messages[0],
+      message: 0,
       isLoaded: false,
       section: 'Preloader'
     };
@@ -107,6 +108,11 @@ class App extends BaseComponent {
     setQuery({text: text});
   }
 
+  handleUpdateMessage = message => {
+    this.setState({message: message});
+    setQuery({m: message});
+  }
+
   updateContent = section => {
     this.getContent(section);
     this.setState({section: section});
@@ -124,7 +130,7 @@ class App extends BaseComponent {
     }
 
     if (textFromQuery.m) {
-      this.setState({message: messages[parseInt(textFromQuery.m)]})
+      this.setState({message: parseInt(textFromQuery.m)});
     }
   }
 
@@ -134,9 +140,16 @@ class App extends BaseComponent {
     switch (section) {
       case 'Preloader': return <Preloader key='Preloader'/>;
       case 'EditText': return <EditText key='EditText' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent}/>;
+      case 'Share': return <Share key='Share'
+                                  onTextUpdate={this.handleTextUpdate}
+                                  updateContent={this.updateContent}
+                                  message={this.state.message}
+                                  copyToClipboard={this.handleCopyToClipboard}
+                                  updateMessage={this.handleUpdateMessage}
+      />;
 
       default:
-      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors} copyToClipboard={this.handleCopyToClipboard}/>;
+      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors}/>;
     }
   }
 
