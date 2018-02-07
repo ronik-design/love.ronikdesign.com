@@ -85,9 +85,7 @@ class App extends BaseComponent {
       // Add any "WebGL components" here...
       webgl.scene.add(new Heart(this.state.theme, -8, 3.5));
       webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
-      // webgl.scene.add(new Spinner(this.state.theme, -10, 4));
       webgl.scene.add(new TriangleFetti(3));
-      // webgl.scene.add(new AnimationTest());
     });
   }
 

@@ -55,7 +55,6 @@ module.exports = class TriangleFetti extends THREE.Object3D {
   }
 
   update(dt = 0) {
-    this.rotation.y += dt * -0.05;
     if (this.children) {
       for (let j = 0; j < this.children.length; j++) {
         this.children[j].rotation.y += dt * 0.5;
