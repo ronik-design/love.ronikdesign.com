@@ -94,10 +94,7 @@ module.exports = class Text extends THREE.Object3D {
     // compute sizes
     this.textGeo.computeBoundingBox();
     this.textGeo.computeVertexNormals();
-
-    // center text
-    this.mesh.position.x = -0.5 * ( this.textGeo.boundingBox.max.x - this.textGeo.boundingBox.min.x );
-    this.mesh.position.y = -0.5 * ( this.textGeo.boundingBox.max.y - this.textGeo.boundingBox.min.y );
+    this.textGeo.center();
 
     // "fix" side normals by removing z-component of normals for side faces
     // (this doesn't work well for beveled geometry as then we lose nice curvature around z-axis)
@@ -123,9 +120,6 @@ module.exports = class Text extends THREE.Object3D {
         }
       }
     }
-
-    this.mesh.castShadow = true;
-    this.mesh.receiveShadow = false;
 
     this.add(this.mesh);
 
