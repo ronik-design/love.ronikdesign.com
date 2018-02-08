@@ -33,14 +33,29 @@ module.exports = class Text extends THREE.Object3D {
   animateIn () {
     animate.to(this.materials[1].uniforms.alpha, 2.0, {
       value: 1,
-      delay: this.animationDelay
+      delay: this.animationDelay,
+    });
+    animate.to(this.materials[1], 2.0, {
+      opacity: 1
     });
     animate.fromTo(this.rotation, 2.0, {
       x: -Math.PI / 2
     }, {
       x: 0,
-      ease: Expo.easeOut,
+      ease: Elastic.easeOut,
       delay: this.animationDelay
+    });
+  }
+
+  animateOut () {
+    animate.to(this.materials[1].uniforms.alpha, 2.0, {
+      value: 0,
+    });
+    animate.fromTo(this.rotation, 2.0, {
+      x: 0
+    }, {
+      x: -Math.PI / 2,
+      ease: Expo.easeOut,
     });
   }
 
@@ -59,6 +74,7 @@ module.exports = class Text extends THREE.Object3D {
       new LiveShaderMaterial(honeyShader, {
         transparent: true,
         wireframe: true,
+        opacity: 0,
         uniforms: {
           alpha: { value: 0 },
           time: { value: 0 },

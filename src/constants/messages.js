@@ -3,11 +3,12 @@ const messages = [
   ['You are', 'pixel', 'perfect'],
   ['Bae', 'goals'],
   ['My heart', 'kerns for', 'you'],
-  ['RGB', 'mine'],
+  ['RGB', 'mine?'],
   ['URL', 'mine'],
   ['Spread', 'the', 'love'],
-  ['You are', 'off the', 'block chain'],
-  ['You are', 'just my', 'typeface']
+  ['You are', 'off the', 'blockchain'],
+  ['You are', 'just my', 'typeface'],
+  ['Crazy', '4', 'you']
 ];
 
 module.exports = messages;

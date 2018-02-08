@@ -8,6 +8,8 @@ const Button = require('../../components/Button/Button');
 const Controls = require('../../components/Controls/Controls');
 const Icon = require('../../components/Icon/Icon');
 const Header = require('../../components/Header/Header');
+const randomInt = require('../../util/randomInt');
+const messages = require('../../constants/messages');
 
 class Landing extends BaseComponent {
   constructor (props) {
@@ -16,14 +18,16 @@ class Landing extends BaseComponent {
 
   animateIn () {
     return Promise.all([
-      this.shareButton.animateIn({ delay: 0.5 }),
+      this.shareButton.animateIn({ delay: 3.7 }),
+      this.shuffleButton.animateIn({ delay: 3.5 })
     ]);
   }
 
   animateOut () {
-    return Promise.all([
-      this.shareButton.animateOut({ delay: 0.5 }),
-    ]);
+    // return Promise.all([
+    //   this.shareButton.animateOut(),
+    //   this.shuffleButton.animateOut()
+    // ]);
   }
 
   render () {
@@ -39,6 +43,11 @@ class Landing extends BaseComponent {
             </a>
           </div>
           <div className="ControlsGroup">
+            <Button
+              onClick={() => this.props.updateMessage(randomInt(0, messages.length, this.props.message))}
+              ref={c => { this.shuffleButton = c;}}
+              icon='random'
+            />
             <Button
               onClick={() => this.props.updateContent('Share')}
               ref={ c => { this.shareButton = c; } }

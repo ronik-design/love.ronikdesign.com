@@ -59,7 +59,7 @@ module.exports = class WebGLApp extends EventEmitter {
     this.controls = createOrbitControls(assign({
       element: this.canvas,
       parent: window,
-      distance: 8,
+      distance: this.calculateCameraDistance(),
       distanceBounds: [4, 16]
     }, opt));
 
@@ -72,12 +72,6 @@ module.exports = class WebGLApp extends EventEmitter {
 
     // fog
     this.scene.fog = new THREE.Fog(0x000000, 0, 60);
-
-    // grid
-    // const gridColor = 0xff00ff;
-    // const grid = new THREE.GridHelper(16, 16, gridColor, gridColor);
-    // grid.position.y = -3;
-    // this.scene.add(grid);
 
     // handle resize events
     window.addEventListener('resize', () => this.resize());
@@ -98,6 +92,14 @@ module.exports = class WebGLApp extends EventEmitter {
 
   get running () {
     return this._running;
+  }
+
+  calculateCameraDistance() {
+    const aspect = window.innerWidth / window.innerHeight;
+    if (aspect > 1) {
+      return 8;
+    }
+    return 12;
   }
 
   animateIn (opt = {}) {

@@ -129,7 +129,7 @@ class App extends BaseComponent {
       this.setState({theme: parseInt(textFromQuery.theme)});
     }
 
-    if (textFromQuery.m) {
+    if (textFromQuery.m && parseInt(textFromQuery.m <= messages.length)) {
       this.setState({message: parseInt(textFromQuery.m)});
     }
   }
@@ -149,7 +149,12 @@ class App extends BaseComponent {
       />;
 
       default:
-      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors}/>;
+      case 'Landing': return <Landing key='Landing'
+                                      updateContent={this.updateContent}
+                                      updateColors={this.handleUpdateColors}
+                                      message={this.state.message}
+                                      updateMessage={this.handleUpdateMessage}
+                                      />;
     }
   }
 
@@ -177,7 +182,7 @@ class App extends BaseComponent {
 App.defaultProps = {
   // Artificially inflate preload time so
   // we can see it for demo purposes
-  fakePreloadTime: 250
+  fakePreloadTime: 500
 };
 
 module.exports = App;

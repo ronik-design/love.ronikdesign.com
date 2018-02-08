@@ -1,5 +1,5 @@
 const colors = [
-  ['rgb(255,21,119)', 'rgb(103,0,255)']
+  ['rgb(255,21,119)', 'rgb(52,0,228)']
 ];
 
 module.exports = colors;
