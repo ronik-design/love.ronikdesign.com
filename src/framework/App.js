@@ -129,7 +129,7 @@ class App extends BaseComponent {
       this.setState({theme: parseInt(textFromQuery.theme)});
     }
 
-    if (textFromQuery.m && parseInt(textFromQuery.m <= messages.length)) {
+    if (textFromQuery.m && parseInt(textFromQuery.m) <= messages.length) {
       this.setState({message: parseInt(textFromQuery.m)});
     }
   }
