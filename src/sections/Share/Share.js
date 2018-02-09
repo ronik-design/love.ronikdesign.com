@@ -43,6 +43,11 @@ class Share extends BaseComponent {
     ]);
   }
 
+  handleInputSelect () {
+    const input = this.shareLink;
+    input.setSelectionRange(0, input.value.length)
+  }
+
   render () {
     const classes = classnames({
       'Share': true
@@ -70,7 +75,13 @@ class Share extends BaseComponent {
           <div className='Share__inner'>
             <p className='Share__message'>Spread the love.</p>
             <img className='Share__image' src='/assets/images/og-image.png' />
-            <input className='Share__location' value={window.location}/>
+            <input className='Share__location'
+                   readonly
+                   spellcheck={false}
+                   value={window.location}
+                   onClick={() => this.handleInputSelect()}
+                   ref={c => { this.shareLink = c; } }
+            />
             <Button ref={ c => { this.copyButton = c; }}
                     expandable={false}
                     onClick={() => this.props.copyToClipboard()}
