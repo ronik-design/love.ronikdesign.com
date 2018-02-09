@@ -48,6 +48,10 @@ class Share extends BaseComponent {
     input.setSelectionRange(0, input.value.length)
   }
 
+  handleShareClick () {
+    this.props.copyToClipboard();
+  }
+
   render () {
     const classes = classnames({
       'Share': true
@@ -55,8 +59,8 @@ class Share extends BaseComponent {
 
     const buttonPosition = {
       position: 'absolute',
-      top: '4rem',
-      right: '4rem'
+      top: '2rem',
+      right: '2rem'
     };
 
     let messageText = messages[this.props.message];
@@ -73,21 +77,23 @@ class Share extends BaseComponent {
         </div>
         <div className='Share__content'>
           <div className='Share__inner'>
-            <p className='Share__message'>Spread the love.</p>
-            <img className='Share__image' src='/assets/images/og-image.png' />
-            <input className='Share__location'
-                   readonly
-                   spellcheck={false}
-                   value={window.location}
-                   onClick={() => this.handleInputSelect()}
-                   ref={c => { this.shareLink = c; } }
-            />
-            <Button ref={ c => { this.copyButton = c; }}
-                    expandable={false}
-                    onClick={() => this.props.copyToClipboard()}
-            >
-              Copy share link
-            </Button>
+            <h1 className='Share__heading'>Spread the love</h1>
+            <p className='Share__message'>Send this link to your favorite person.</p>
+            <div className='Share__flex'>
+              <input className='Share__location'
+                     readonly
+                     spellcheck={false}
+                     value={window.location}
+                     onClick={() => this.handleInputSelect()}
+                     ref={c => { this.shareLink = c; } }
+              />
+              <Button ref={ c => { this.copyButton = c; }}
+                      expandable={false}
+                      onClick={() => this.handleShareClick()}
+              >
+                Copy
+              </Button>
+            </div>
           </div>
         </div>
       </div>

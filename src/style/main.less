@@ -17,6 +17,7 @@ html {
   font-size: 62.5%; 
 }
 
+@import "./variables.less";
 @import "./reset.less";
 @import "./mixins.less";
 @import "../components/**/*.less";
@@ -51,4 +52,14 @@ canvas {
     height: 4rem;
     fill: #fff;
   }
+}
+
+*::selection {
+  background: @color1; /* WebKit/Blink Browsers */
+  color: #FFF;
+}
+
+*::-moz-selection {
+  background: @color1; /* Gecko Browsers */
+  color: #FFF;
 }

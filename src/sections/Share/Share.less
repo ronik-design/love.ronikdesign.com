@@ -5,23 +5,23 @@
   position: absolute;
   top: 0;
   left: 0;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.8);
+  pointer-events: initial;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
 
   &__content {
-    padding: 3rem 2rem 2rem 2rem;
+    padding: 3.2rem 2.4rem;
     background: #FFF;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 42rem;
+    border-radius: 0.8rem;
     width: 100%;
-  }
+    max-width: 40rem;
 
-  &__inner {
-    width: 100%;
-    height: 100%;
+    @media screen and (min-width: 769px) {
+      padding: 4.2rem 3.6rem;
+    }
   }
 
   &__inner {
@@ -31,10 +31,11 @@
     justify-content: center;
 
     .Button {
-      color: #000;
-      box-shadow: inset 0 0 0 2px #000;
-      margin-top: 2rem;
+      color: @color2;
+      box-shadow: inset 0 0 0 2px @color2;
       width: 100%;
+      flex-basis: 10rem;
+      margin-left: 1.6rem;
 
       .ButtonText {
         width: 100%;
@@ -42,20 +43,41 @@
     }
   }
 
-  &__image {
-    margin-top: 2rem;
+  &__heading {
+    font-size: 3.6rem;
+    font-weight: bold;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.6rem;
+    color: @color1;
   }
 
   &__message {
-    color: #000;
-    font-size: 3.2rem;
+    color: #757180;
+    font-size: 1.6rem;
+    line-height: 1.3;
     text-align: center;
     display: block;
   }
 
   &__location {
+    .karla;
+    font-size: 1.8rem;
     pointer-events: initial;
     width: 100%;
-    margin-top: 2rem;
+    height: 4.8rem;
+    border: 0;
+    border-bottom: 2px solid #757180;
+    appearance: none;
+    position: relative;
+
+    &:focus {
+      border-bottom: 2px solid @color1;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    width: 100%;
+    margin-top: 3.6rem;
   }
 }
