@@ -9,7 +9,7 @@
   border-radius: 2.4rem;
   cursor: pointer;
   padding: 0 2.4rem;
-  transition: all 0.4s @easeInOutCubic 0.05s;
+  transition: all 0.2s @easeInOutCubic 0.05s;
   background: transparent;
   box-shadow: inset 0 0 0 2px #fff;
   border: 0;
@@ -54,7 +54,8 @@
   }
 
   &:active {
-    transition: background 0.05s @easeInOutCubic;
+    transform: scale(0.98);
+    transition: all 0.05s @easeInOutCubic;
     background: rgb(222,222,222);
   }
 
@@ -110,6 +111,11 @@
     &Close {
       top: 1.5rem;
       left: 1.5rem;
+    }
+
+    &Random {
+      top: 0.8rem;
+      left: 1.1rem;
     }
   }
 }

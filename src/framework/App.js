@@ -6,25 +6,24 @@ const animate = require('@jam3/gsap-promise');
 const PreactTransitionGroup = require('preact-transition-group');
 const setQuery = require('set-query-string');
 const colors = require('../constants/colors');
+const messages = require('../constants/messages');
 const queryString = require('query-string');
-const swearjar = require('swearjar');
 const copy = require('copy-to-clipboard');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
 const Preloader = require('../sections/Preloader/Preloader');
 const EditText = require('../sections/EditText/EditText');
+const Share = require('../sections/Share/Share');
 
 // WebGL canvas component
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
 const Text = require('../webgl/scene/Text');
-const Environment = require('../webgl/scene/Environment');
-const Lighting = require('../webgl/scene/Lighting');
-const Floor = require('../webgl/scene/Floor');
-const Spinner = require('../webgl/scene/Spinner');
+const TextContainer = require('../webgl/scene/TextContainer');
 const TriangleFetti = require('../webgl/scene/TriangleFetti');
+const Heart = require('../webgl/scene/Heart');
 
 const { assets, webgl } = require('../context');
 
@@ -33,10 +32,9 @@ class App extends BaseComponent {
     super(props);
 
     this.state = {
-      text: '',
       theme: 0,
+      message: 0,
       isLoaded: false,
-      isAltMaterial: false,
       section: 'Preloader'
     };
 
@@ -56,7 +54,7 @@ class App extends BaseComponent {
       webgl.draw();
 
       // trigger initial animation in of content
-      webgl.animateIn({ delay: 0.5 });
+      webgl.animateIn({ delay: 0.9 });
     }
 
     // propagate through entire scene graph any app changes
@@ -79,15 +77,12 @@ class App extends BaseComponent {
   loadWebGL () {
     // Preload any queued assets
     assets.loadQueued(() => {
-      // Do some fake delay for demo purposes
-      setTimeout(() => {
-        // Once loading is complete, swap to Landing section and ensure WebGL displays
-        this.setState({ section: 'Landing', isLoaded: true });
-      }, this.props.fakePreloadTime);
+      // Once loading is complete, swap to Landing section and ensure WebGL displays
+      this.setState({ section: 'Landing', isLoaded: true });
 
       // Add any "WebGL components" here...
-      webgl.scene.add(new Text(this.state.theme));
-      webgl.scene.add(new Spinner(this.state.theme, -10));
+      webgl.scene.add(new Heart(this.state.theme, -8, 3.5));
+      webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
       webgl.scene.add(new TriangleFetti(3));
     });
   }
@@ -110,6 +105,11 @@ class App extends BaseComponent {
     setQuery({text: text});
   }
 
+  handleUpdateMessage = message => {
+    this.setState({message: message});
+    setQuery({m: message});
+  }
+
   updateContent = section => {
     this.getContent(section);
     this.setState({section: section});
@@ -126,11 +126,8 @@ class App extends BaseComponent {
       this.setState({theme: parseInt(textFromQuery.theme)});
     }
 
-    if (textFromQuery.text) {
-      const queryIsProfane = swearjar.profane(textFromQuery.text);
-      queryIsProfane ? this.setState({text: 'nice try'}) : this.setState({text: textFromQuery.text});
-    } else {
-      this.setState({text: 'ronik'});
+    if (textFromQuery.m && parseInt(textFromQuery.m) <= messages.length) {
+      this.setState({message: parseInt(textFromQuery.m)});
     }
   }
 
@@ -140,9 +137,21 @@ class App extends BaseComponent {
     switch (section) {
       case 'Preloader': return <Preloader key='Preloader'/>;
       case 'EditText': return <EditText key='EditText' onTextUpdate={this.handleTextUpdate} updateContent={this.updateContent}/>;
+      case 'Share': return <Share key='Share'
+                                  onTextUpdate={this.handleTextUpdate}
+                                  updateContent={this.updateContent}
+                                  message={this.state.message}
+                                  copyToClipboard={this.handleCopyToClipboard}
+                                  updateMessage={this.handleUpdateMessage}
+      />;
 
       default:
-      case 'Landing': return <Landing key='Landing' updateContent={this.updateContent} updateColors={this.handleUpdateColors} copyToClipboard={this.handleCopyToClipboard}/>;
+      case 'Landing': return <Landing key='Landing'
+                                      updateContent={this.updateContent}
+                                      updateColors={this.handleUpdateColors}
+                                      message={this.state.message}
+                                      updateMessage={this.handleUpdateMessage}
+                                      />;
     }
   }
 
@@ -170,7 +179,7 @@ class App extends BaseComponent {
 App.defaultProps = {
   // Artificially inflate preload time so
   // we can see it for demo purposes
-  fakePreloadTime: 250
+  fakePreloadTime: 500
 };
 
 module.exports = App;

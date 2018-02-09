@@ -8,14 +8,14 @@ module.exports = class TriangleFetti extends THREE.Object3D {
   constructor () {
     super();
 
-    this.generateFetti(50);
+    this.generateFetti(30);
   }
 
   generateFetti = count => {
     for (let i = 0; i < count; i++) {
       const geometry = new THREE.ConeGeometry(0.5, 1, 4);
-      this.material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true, transparent: true, opacity: 1});
-      const mesh = new THREE.Mesh(geometry, this.material);
+      const material = new THREE.MeshBasicMaterial({color: 0xffffff, wireframe: true});
+      const mesh = new THREE.Mesh(geometry, material);
 
       mesh.rotation.x = getRandomInt(0, 360) * THREE.Math.DEG2RAD;
       mesh.rotation.z = getRandomInt(0, 360) * THREE.Math.DEG2RAD;
@@ -32,15 +32,27 @@ module.exports = class TriangleFetti extends THREE.Object3D {
   }
 
   animateIn () {
-    animate.fromTo(this.scale, 5.0, {
+    animate.fromTo(this.position, 5.0, {
+      x: -30,
+      y: -30,
+      z: -30
+    }, {
       x: 0,
       y: 0,
-      z: 0
+      z: 0,
+      ease: Back.easeOut,
+      delay: 0.5
+    });
+    animate.fromTo(this.rotation, 15.0, {
+      x: 15 * THREE.Math.DEG2RAD,
+      y: 40 * THREE.Math.DEG2RAD,
+      z: 25 * THREE.Math.DEG2RAD,
     }, {
-      x: 1,
-      y: 1,
-      z: 1,
-      ease: Back.easeOut
+      x: 0,
+      y: 0,
+      z: 0,
+      ease: Expo.easeOut,
+      delay: 0.5
     });
   }
 

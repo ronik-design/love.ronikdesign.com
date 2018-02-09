@@ -4,10 +4,20 @@
   bottom: 0;
   left: 0;
 
+  @media screen and (max-width: 768px) {
+    height: 100%;
+  }
+
   &Inner {
     .padding;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      height: 100%;
+    }
   }
 
   &Group {

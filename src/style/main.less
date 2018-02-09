@@ -17,6 +17,8 @@ html {
   font-size: 62.5%; 
 }
 
+@import "./variables.less";
+@import "./reset.less";
 @import "./mixins.less";
 @import "../components/**/*.less";
 @import "../sections/**/*.less";
@@ -35,4 +37,29 @@ html {
 
 canvas {
   z-index: -10;
+}
+
+.Logo {
+  pointer-events: initial;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  height: 4.8rem;
+
+  svg {
+    width: 10rem;
+    height: 4rem;
+    fill: #fff;
+  }
+}
+
+*::selection {
+  background: @color1; /* WebKit/Blink Browsers */
+  color: #FFF;
+}
+
+*::-moz-selection {
+  background: @color1; /* Gecko Browsers */
+  color: #FFF;
 }

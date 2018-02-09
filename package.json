@@ -79,7 +79,7 @@
     "bundle:js": "node tools/bundler.js | uglifyjs -m -c warnings=false > app/bundle.js",
     "bundle:css": "node tools/style.js",
     "bundle": "cross-env NODE_ENV=production npm-run-all bundle:js bundle:css",
-    "deploy:upload": "surge -p app/ -d test-webgl-preact.surge.sh",
+    "deploy:upload": "surge -p app/ -d ahead-heat.surge.sh",
     "deploy": "npm run bundle && npm run deploy:upload"
   },
   "glslify": {
