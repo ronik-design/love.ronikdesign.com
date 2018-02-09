@@ -20,7 +20,6 @@ const Share = require('../sections/Share/Share');
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
 
 // WebGL scenes
-const Text = require('../webgl/scene/Text');
 const TextContainer = require('../webgl/scene/TextContainer');
 const TriangleFetti = require('../webgl/scene/TriangleFetti');
 const Heart = require('../webgl/scene/Heart');
@@ -106,8 +105,16 @@ class App extends BaseComponent {
   }
 
   handleUpdateMessage = message => {
-    this.setState({message: message});
-    setQuery({m: message});
+    let messageIndex;
+
+    if (this.state.message === messages.length - 1) {
+      messageIndex = 0;
+    } else {
+      messageIndex = this.state.message + 1;
+    }
+
+    this.setState({message: messageIndex});
+    setQuery({m: messageIndex});
   }
 
   updateContent = section => {
@@ -142,7 +149,6 @@ class App extends BaseComponent {
                                   updateContent={this.updateContent}
                                   message={this.state.message}
                                   copyToClipboard={this.handleCopyToClipboard}
-                                  updateMessage={this.handleUpdateMessage}
       />;
 
       default:

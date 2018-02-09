@@ -7,9 +7,6 @@ const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
 const Controls = require('../../components/Controls/Controls');
 const Icon = require('../../components/Icon/Icon');
-const Header = require('../../components/Header/Header');
-const randomInt = require('../../util/randomInt');
-const messages = require('../../constants/messages');
 
 class Landing extends BaseComponent {
   constructor (props) {
@@ -44,7 +41,7 @@ class Landing extends BaseComponent {
           </div>
           <div className="ControlsGroup">
             <Button
-              onClick={() => this.props.updateMessage(randomInt(0, messages.length, this.props.message))}
+              onClick={() => this.props.updateMessage()}
               ref={c => { this.shuffleButton = c;}}
               icon='random'
             />
