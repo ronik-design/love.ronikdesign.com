@@ -7,6 +7,7 @@ const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
 const Controls = require('../../components/Controls/Controls');
 const Icon = require('../../components/Icon/Icon');
+const Logo = require('../../components/Logo/Logo');
 
 class Landing extends BaseComponent {
   constructor (props) {
@@ -14,10 +15,9 @@ class Landing extends BaseComponent {
   }
 
   animateIn () {
-    return Promise.all([
-      this.shareButton.animateIn({ delay: 3.7 }),
-      this.shuffleButton.animateIn({ delay: 3.5 })
-    ]);
+    this.logo.animateIn({ delay: 4 });
+    this.shuffleButton.animateIn({ delay: 4.2 });
+    this.shareButton.animateIn({ delay: 4.4 });
   }
 
   animateOut () {
@@ -35,9 +35,7 @@ class Landing extends BaseComponent {
       <div className={classes} ref={ c => { this.container = c; } }>
         <Controls>
           <div className="ControlsGroup">
-            <a className="Logo" href="http://ronikdesign.com" target="_blank">
-              <Icon name='logo'/>
-            </a>
+            <Logo ref={c => {this.logo = c; }}/>
           </div>
           <div className="ControlsGroup">
             <Button
