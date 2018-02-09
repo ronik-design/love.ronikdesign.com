@@ -29,7 +29,7 @@ module.exports = class TextContainer extends THREE.Object3D {
         // this sets a delay for the initial transition and removes it for when it creates new lines
         let delay = j / 3 + 2.5;
         if (this.shouldAnimate) {
-          delay = 0;
+          delay = j / 4;
         }
 
         const textLine = new Text(0, newText[j], [0, 0, 0], delay);
