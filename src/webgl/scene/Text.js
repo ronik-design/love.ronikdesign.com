@@ -40,6 +40,10 @@ module.exports = class Text extends THREE.Object3D {
     animate.to(this.materials[1], 2.0, {
       opacity: 1
     });
+    animate.to(this.materials[0], 0.2, {
+      opacity: 1,
+      delay: this.animationDelay
+    });
     animate.fromTo(this.rotation, 2.0, {
       x: -Math.PI / 2
     }, {
@@ -72,7 +76,7 @@ module.exports = class Text extends THREE.Object3D {
     this.textGeo = new THREE.TextGeometry(text, options);
 
     this.materials = [
-      new THREE.MeshBasicMaterial({color: 0x000000, flatShading: true}), // front
+      new THREE.MeshBasicMaterial({color: 0x000000, transparent: true, opacity: 0}), // front
       new LiveShaderMaterial(honeyShader, {
         transparent: true,
         wireframe: true,
