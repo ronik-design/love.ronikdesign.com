@@ -9,6 +9,7 @@ module.exports = class TextContainer extends THREE.Object3D {
     this.color = color;
 
     this.refreshText(this.text);
+    this.shouldAnimate = false;
   }
 
   refreshText(newText) {
@@ -25,7 +26,15 @@ module.exports = class TextContainer extends THREE.Object3D {
     // add + reposition each text line
     if (Array.isArray(newText)) {
       for (let j = 0; j < newText.length; j++) {
-        this.add(new Text(0, newText[j], [0, 0, 0], (j / 3 + 2.5)));
+        // this sets a delay for the initial transition and removes it for when it creates new lines
+        let delay = j / 3 + 2.5;
+        if (this.shouldAnimate) {
+          delay = 0;
+        }
+
+        const textLine = new Text(0, newText[j], [0, 0, 0], delay);
+        this.add(textLine);
+        textLine.animateIn();
       }
 
       switch(newText.length) {
@@ -48,6 +57,10 @@ module.exports = class TextContainer extends THREE.Object3D {
   onAppDidUpdate (oldProps, oldState, newProps, newState) {
     if (oldState.message === newState.message) {
       return;
+    }
+
+    if (newState.isLoaded === true) {
+      this.shouldAnimate = true;
     }
 
     this.refreshText(messages[newState.message]);

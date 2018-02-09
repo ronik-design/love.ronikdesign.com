@@ -8,7 +8,8 @@ const messages = [
   ['Spread', 'the', 'love'],
   ['You are', 'off the', 'blockchain'],
   ['You are', 'just my', 'typeface'],
-  ['Crazy', '4', 'you']
+  ['Crazy', '4', 'you'],
+  ['CSS', 'me']
 ];
 
 module.exports = messages;

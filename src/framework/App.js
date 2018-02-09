@@ -77,11 +77,8 @@ class App extends BaseComponent {
   loadWebGL () {
     // Preload any queued assets
     assets.loadQueued(() => {
-      // Do some fake delay for demo purposes
-      setTimeout(() => {
-        // Once loading is complete, swap to Landing section and ensure WebGL displays
-        this.setState({ section: 'Landing', isLoaded: true });
-      }, this.props.fakePreloadTime);
+      // Once loading is complete, swap to Landing section and ensure WebGL displays
+      this.setState({ section: 'Landing', isLoaded: true });
 
       // Add any "WebGL components" here...
       webgl.scene.add(new Heart(this.state.theme, -8, 3.5));

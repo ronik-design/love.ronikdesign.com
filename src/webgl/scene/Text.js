@@ -6,7 +6,7 @@ const animate = require('@jam3/gsap-promise');
 const triangleArea = require('../../util/triangulate');
 const colors = require('../../constants/colors');
 
-// add fonts to preloader
+// add font to preloader
 const introFont = assets.queue({
   url: 'assets/fonts/intro-black.typeface.json'
 });
@@ -15,19 +15,21 @@ module.exports = class Text extends THREE.Object3D {
   constructor (color, text = 'ronik', position = [0, 0, 0], delay = 0) {
     super();
 
-    this.loader = new THREE.FontLoader();
+    // retrieve font
+    const font = assets.get(introFont);
+    this.font = new THREE.Font(font);
 
     this.text = text;
     this.typeface = 'intro-black';
     this.colorIndex = color;
     this.colorSet = colors[this.colorIndex];
-    this.refreshText(this.typeface);
-    this.shouldUpdate = false;
 
     this.position.x = position[0];
     this.position.y = position[1];
     this.position.z = position[2];
     this.animationDelay = delay;
+
+    this.createText(this.font);
   }
 
   animateIn () {
@@ -44,7 +46,7 @@ module.exports = class Text extends THREE.Object3D {
       x: 0,
       ease: Elastic.easeOut,
       delay: this.animationDelay
-    });
+    })
   }
 
   animateOut () {
@@ -56,7 +58,7 @@ module.exports = class Text extends THREE.Object3D {
     }, {
       x: -Math.PI / 2,
       ease: Expo.easeOut,
-    });
+    })
   }
 
   createText(font) {
@@ -83,8 +85,6 @@ module.exports = class Text extends THREE.Object3D {
         }
       })
     ];
-
-    this.altMaterial = new THREE.MeshNormalMaterial();
 
     this.mesh = new THREE.Mesh(
       this.textGeo,
@@ -122,34 +122,6 @@ module.exports = class Text extends THREE.Object3D {
     }
 
     this.add(this.mesh);
-
-    // prevent animation from being fired twice on first load
-    if (this.shouldUpdate) {
-      this.materials[1].uniforms.alpha.value = 1;
-    }
-  }
-
-  refreshText(typeface) {
-    if (this.mesh) {
-      this.remove(this.mesh);
-    }
-
-    this.loader.load(`assets/fonts/${typeface}.typeface.json`, font => {
-      this.createText(font);
-    });
-  }
-
-  onAppDidUpdate (oldProps, oldState, newProps, newState) {
-    if (oldState.isLoaded === false) {
-      return;
-    } else {
-      this.shouldUpdate = true;
-    }
-
-    if (oldState.theme !== newState.theme) {
-      this.colorSet = colors[newState.theme];
-      this.refreshText(this.typeface);
-    }
   }
 
   update (dt = 0, time = 0) {
