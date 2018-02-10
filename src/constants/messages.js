@@ -13,7 +13,6 @@ const messages = [
   ['CSS', 'me'],
   ['You are', 'the lorem', 'to my ipsum'],
   ['I am', 'font of you'],
-  ['Four', 'Lines', 'Of', 'Text']
 ];
 
 module.exports = messages;
