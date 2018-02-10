@@ -1,15 +1,19 @@
 const messages = [
   ['Happy', 'Valentines', 'Day!'],
   ['You are', 'pixel', 'perfect'],
-  ['Bae', 'goals'],
   ['My heart', 'kerns for', 'you'],
   ['RGB', 'mine?'],
+  ['You are the', 'HTML to my', 'CSS'],
   ['URL', 'mine'],
   ['Spread', 'the', 'love'],
   ['You are', 'off the', 'blockchain'],
-  ['You are', 'just my', 'typeface'],
+  ['You are', 'just my', 'type'],
   ['Crazy', '4', 'you'],
-  ['CSS', 'me']
+  ['You kern', 'me on'],
+  ['CSS', 'me'],
+  ['You are', 'the lorem', 'to my ipsum'],
+  ['I am', 'font of you'],
+  ['Four', 'Lines', 'Of', 'Text']
 ];
 
 module.exports = messages;
