@@ -49,7 +49,7 @@ class Share extends BaseComponent {
     input.setSelectionRange(0, input.value.length)
   }
 
-  handleShareClick () {
+  handleCopyClick () {
     this.props.copyToClipboard();
     ReactGA.event({
       category: 'button',
@@ -95,7 +95,7 @@ class Share extends BaseComponent {
               />
               <Button ref={ c => { this.copyButton = c; }}
                       expandable={false}
-                      onClick={() => this.handleShareClick()}
+                      onClick={() => this.handleCopyClick()}
               >
                 Copy
               </Button>
