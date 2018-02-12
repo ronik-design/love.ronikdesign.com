@@ -107,7 +107,6 @@ class Share extends BaseComponent {
         <div className='Share__content'>
           <div className='Share__inner'>
             <h1 className='Share__heading'>Spread the love</h1>
-            <p className='Share__message'>Send this link to your favorite person.</p>
             <Button expandable={false}
                     ref={c => { this.shareTwitter = c }}
                     onClick={() => this.handleShareTwitter()}
