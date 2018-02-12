@@ -99,7 +99,7 @@ module.exports = class WebGLApp extends EventEmitter {
     if (aspect > 1) {
       return 8;
     }
-    return 12;
+    return 16;
   }
 
   animateIn (opt = {}) {
