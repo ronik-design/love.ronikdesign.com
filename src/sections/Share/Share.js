@@ -4,8 +4,8 @@ const BaseComponent = require('../../components/BaseComponent/BaseComponent');
 const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
-const messages = require('../../constants/messages');
 const ReactGA = require('react-ga');
+const popup = require('window-popup').windowPopup;
 
 class Share extends BaseComponent {
   constructor (props) {
@@ -30,7 +30,9 @@ class Share extends BaseComponent {
         scale: 1
       }),
       this.closeButton.animateIn(),
-      this.copyButton.animateIn()
+      this.copyButton.animateIn(),
+      this.shareTwitter.animateIn(),
+      this.shareFacebook.animateIn()
     ]);
   }
 
@@ -58,6 +60,29 @@ class Share extends BaseComponent {
     });
   }
 
+  handleShareTwitter () {
+    const message = '';
+    const href = `https://twitter.com/intent/tweet/?text=${message}&url=${window.location.href}&via=ronikdesign`;
+    popup(500, 300, href);
+
+    ReactGA.event({
+      category: 'button',
+      action: 'click',
+      label: 'twitter'
+    });
+  }
+
+  handleShareFacebook () {
+    const href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+    popup(600, 500, href);
+
+    ReactGA.event({
+      category: 'button',
+      action: 'click',
+      label: 'facebook'
+    });
+  }
+
   render () {
     const classes = classnames({
       'Share': true
@@ -68,8 +93,6 @@ class Share extends BaseComponent {
       top: '2rem',
       right: '2rem'
     };
-
-    let messageText = messages[this.props.message];
 
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
@@ -85,6 +108,18 @@ class Share extends BaseComponent {
           <div className='Share__inner'>
             <h1 className='Share__heading'>Spread the love</h1>
             <p className='Share__message'>Send this link to your favorite person.</p>
+            <Button expandable={false}
+                    ref={c => { this.shareTwitter = c }}
+                    onClick={() => this.handleShareTwitter()}
+            >
+              Share on Twitter
+            </Button>
+            <Button expandable={false}
+                    ref={c => { this.shareFacebook = c }}
+                    onClick={() => this.handleShareFacebook()}
+            >
+              Share on Facebook
+            </Button>
             <div className='Share__flex'>
               <input className='Share__location'
                      readonly

@@ -36,6 +36,7 @@
     "three": "^0.89.0",
     "touches": "^1.2.2",
     "tweenr": "^2.2.1",
+    "window-popup": "^1.1.0",
     "xhr": "^2.4.1"
   },
   "semistandard": {
