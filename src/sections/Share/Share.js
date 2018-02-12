@@ -5,6 +5,7 @@ const classnames = require('classnames');
 const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
 const messages = require('../../constants/messages');
+const ReactGA = require('react-ga');
 
 class Share extends BaseComponent {
   constructor (props) {
@@ -50,6 +51,11 @@ class Share extends BaseComponent {
 
   handleShareClick () {
     this.props.copyToClipboard();
+    ReactGA.event({
+      category: 'button',
+      action: 'click',
+      label: 'copy'
+    });
   }
 
   render () {

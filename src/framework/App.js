@@ -9,6 +9,7 @@ const colors = require('../constants/colors');
 const messages = require('../constants/messages');
 const queryString = require('query-string');
 const copy = require('copy-to-clipboard');
+const ReactGA = require('react-ga');
 
 // DOM Sections
 const Landing = require('../sections/Landing/Landing');
@@ -66,6 +67,9 @@ class App extends BaseComponent {
     webgl.canvas.addEventListener('mousedown', this.handlePreventDefault);
 
     this.loadWebGL();
+
+    ReactGA.initialize('UA-26504381-7');
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   componentWillUnmount () {
@@ -82,7 +86,7 @@ class App extends BaseComponent {
       // Add any "WebGL components" here...
       webgl.scene.add(new Heart(this.state.theme, -8, 3.5));
       webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
-      webgl.scene.add(new TriangleFetti(3));
+      webgl.scene.add(new TriangleFetti());
     });
   }
 
