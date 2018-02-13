@@ -6,6 +6,7 @@ const animate = require('@jam3/gsap-promise');
 const Button = require('../../components/Button/Button');
 const ReactGA = require('react-ga');
 const popup = require('window-popup').windowPopup;
+const Mousetrap = require('mousetrap');
 
 class Share extends BaseComponent {
   constructor (props) {
@@ -49,6 +50,11 @@ class Share extends BaseComponent {
   handleInputSelect () {
     const input = this.shareLink;
     input.setSelectionRange(0, input.value.length)
+    input.addEventListener('keyup', e => {
+      if (e.keyCode === 27) {
+        this.props.updateContent('Landing');
+      }
+    })
   }
 
   handleCopyClick () {
@@ -81,6 +87,10 @@ class Share extends BaseComponent {
       action: 'click',
       label: 'facebook'
     });
+  }
+
+  componentDidMount() {
+    Mousetrap.bind('esc', () => this.props.updateContent('Landing'));
   }
 
   render () {

@@ -21,6 +21,7 @@
     "load-img": "^1.0.0",
     "load-json-xhr": "^3.0.3",
     "map-limit": "0.0.1",
+    "mousetrap": "^1.6.1",
     "object-assign": "^4.1.1",
     "orbit-controls": "^1.2.4",
     "postprocessing": "^4.1.0",
