@@ -36,7 +36,12 @@ html {
 }
 
 canvas {
+  .cursor-grab;
   z-index: -10;
+
+  &.is-grabbing {
+    .cursor-grabbing;
+  }
 }
 
 *::selection {

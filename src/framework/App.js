@@ -64,7 +64,8 @@ class App extends BaseComponent {
   componentDidMount () {
     // To avoid page pulling, text highlighting and such
     webgl.canvas.addEventListener('touchstart', this.handlePreventDefault);
-    webgl.canvas.addEventListener('mousedown', this.handlePreventDefault);
+    webgl.canvas.addEventListener('mousedown', this.handleCanvasMouseDown);
+    webgl.canvas.addEventListener('mouseup', this.handleCanvasMouseUp);
 
     this.loadWebGL();
 
@@ -74,7 +75,8 @@ class App extends BaseComponent {
 
   componentWillUnmount () {
     webgl.canvas.removeEventListener('touchstart', this.handlePreventDefault);
-    webgl.canvas.removeEventListener('mousedown', this.handlePreventDefault);
+    webgl.canvas.removeEventListener('mousedown', this.handleCanvasMouseDown);
+    webgl.canvas.removeEventListener('mouseup', this.handleCanvasMouseUp);
   }
 
   loadWebGL () {
@@ -88,6 +90,16 @@ class App extends BaseComponent {
       webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
       webgl.scene.add(new TriangleFetti());
     });
+  }
+
+  handleCanvasMouseDown () {
+    event.preventDefault();
+    webgl.canvas.classList.add('is-grabbing');
+  }
+
+  handleCanvasMouseUp () {
+    event.preventDefault();
+    webgl.canvas.classList.remove('is-grabbing');
   }
 
   handleUpdateColors = () => {

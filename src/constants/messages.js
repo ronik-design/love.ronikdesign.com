@@ -12,7 +12,8 @@ const messages = [
   ['CSS', 'me'],
   ['You are', 'the lorem', 'to my ipsum'],
   ['I am', 'font of you'],
-  ['You had', 'me at', 'hello world']
+  ['You had', 'me at', 'hello world'],
+  ['Lets', 'git', 'together']
 ];
 
 module.exports = messages;
