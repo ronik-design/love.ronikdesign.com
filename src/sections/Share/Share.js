@@ -49,7 +49,7 @@ class Share extends BaseComponent {
 
   handleInputSelect () {
     const input = this.shareLink;
-    input.setSelectionRange(0, input.value.length)
+    input.setSelectionRange(0, input.value.length);
     input.addEventListener('keyup', e => {
       if (e.keyCode === 27) {
         this.props.updateContent('Landing');
