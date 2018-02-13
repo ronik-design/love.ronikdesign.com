@@ -84,7 +84,7 @@ class App extends BaseComponent {
       this.setState({ section: 'Landing', isLoaded: true });
 
       // Add any "WebGL components" here...
-      webgl.scene.add(new Heart(this.state.theme, -8, 3.5));
+      webgl.scene.add(new Heart(this.state.theme, -3, 3.5));
       webgl.scene.add(new TextContainer(this.state.theme, this.state.message));
       webgl.scene.add(new TriangleFetti());
     });
