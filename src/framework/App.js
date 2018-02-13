@@ -139,6 +139,8 @@ class App extends BaseComponent {
 
     if (textFromQuery.m && parseInt(textFromQuery.m) <= messages.length) {
       this.setState({message: parseInt(textFromQuery.m)});
+    } else {
+      this.setState({message: 0});
     }
   }
 
