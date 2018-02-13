@@ -59,6 +59,8 @@ class Share extends BaseComponent {
 
   handleCopyClick () {
     this.props.copyToClipboard();
+    this.copyButton.base.classList.add('confirmation');
+    setTimeout(() => this.copyButton.base.classList.remove('confirmation'), 1000);
     ReactGA.event({
       category: 'button',
       action: 'click',
