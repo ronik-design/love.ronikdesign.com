@@ -111,13 +111,15 @@
         z-index: 10;
         color: #fff;
         line-height: 4.8rem;
-        transition: all 0.2s @easeInOutCubic;
+        transition: opacity 0.1s @easeInOutCubic;
         opacity: 0;
+        border-radius: 2.4rem;
       }
 
       &.confirmation {
         &:after {
           transform: translateY(0);
+          transition: all 0.2s @easeInOutCubic 0s;
           opacity: 1;
         }
       }
