@@ -9,12 +9,12 @@
   font-size: 1.6rem;
   border-radius: 2.4rem;
   padding: 0 2.4rem;
-  background: transparent;
-  box-shadow: inset 0 0 0 2px #fff;
+  background: linear-gradient(to top right, @color1 0%, @color2 100%);
   border: 0;
   opacity: 0;
   outline: none;
   display: flex;
+  overflow: hidden;
 
   &.hasIcon {
     position: relative;
@@ -51,21 +51,49 @@
     }
   }
 
+  &:after {
+    width: 0;
+  }
+
+  &.muted {
+    position: relative;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      transform: rotate(-45deg) translateY(-50%);
+      transition: width 0.2s @easeInOutCubic;
+    }
+  }
+
+  &.primary {
+    box-shadow: none;
+    background: linear-gradient(to top right, @color1 0%, @color2 100%);
+
+    svg {
+      fill: #fff;
+    }
+  }
+
   &:active {
     transform: scale(0.96);
   }
 
   &:focus {
     box-shadow: inset 0 0 10px 2px @color2 !important;
-    color: @color2;
-
-    svg {
-      fill: @color2;
-    }
   }
 
   & + .Button {
-    margin-left: 1.6rem;
+    margin-left: 0.8rem;
+
+    @media screen and (min-width: 769px) {
+      margin-left: 1.6rem;
+    }
   }
 
   &Text {
@@ -120,6 +148,11 @@
     &Random {
       top: 0.8rem;
       left: 1.1rem;
+    }
+
+    &Sound {
+      top: 1.1rem;
+      left: 1rem;
     }
   }
 }

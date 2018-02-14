@@ -12,7 +12,7 @@
     .padding;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
@@ -22,5 +22,14 @@
 
   &Group {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-end;
+
+    @media screen and (max-width: 768px) {
+      &:first-child {
+        flex-direction: row-reverse;
+      }
+    }
   }
 }

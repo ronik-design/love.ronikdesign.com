@@ -5,13 +5,23 @@
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  height: 4.8rem;
+  top: 1.6rem;
   opacity: 0;
 
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    left: 1.6rem;
+  }
+
   svg {
-    width: 10rem;
-    height: 4rem;
+    width: 8rem;
+    height: 3.5rem;
     fill: #fff;
+
+    @media screen and (min-width: 769px) {
+      width: 10rem;
+      height: 4rem;
+    }
   }
 
   &:focus {

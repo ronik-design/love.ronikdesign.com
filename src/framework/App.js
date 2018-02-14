@@ -16,6 +16,7 @@ const Landing = require('../sections/Landing/Landing');
 const Preloader = require('../sections/Preloader/Preloader');
 const EditText = require('../sections/EditText/EditText');
 const Share = require('../sections/Share/Share');
+const Music = require('../components/Music/Music');
 
 // WebGL canvas component
 const WebGLCanvas = require('../components/WebGLCanvas/WebGLCanvas');
@@ -35,7 +36,8 @@ class App extends BaseComponent {
       theme: 0,
       message: 0,
       isLoaded: false,
-      section: 'Preloader'
+      section: 'Preloader',
+      isMuted: false
     };
 
     this.updateStateFromQuery();
@@ -102,6 +104,10 @@ class App extends BaseComponent {
     webgl.canvas.classList.remove('is-grabbing');
   }
 
+  toggleMusic = () => {
+    this.setState({isMuted: !this.state.isMuted});
+  }
+
   handleUpdateColors = () => {
     let colorIndex;
 
@@ -154,6 +160,10 @@ class App extends BaseComponent {
     } else {
       this.setState({message: 0});
     }
+
+    if (textFromQuery.muted) {
+      this.setState({isMuted: true})
+    }
   }
 
   getContent (section) {
@@ -175,6 +185,8 @@ class App extends BaseComponent {
                                       updateColors={this.handleUpdateColors}
                                       message={this.state.message}
                                       updateMessage={this.handleUpdateMessage}
+                                      toggleMusic={this.toggleMusic}
+                                      isMuted={this.state.isMuted}
                                       />;
     }
   }
@@ -195,6 +207,7 @@ class App extends BaseComponent {
         <PreactTransitionGroup className='content'>
           { content }
         </PreactTransitionGroup>
+        <Music isMuted={this.state.isMuted}/>
       </div>
     );
   }
