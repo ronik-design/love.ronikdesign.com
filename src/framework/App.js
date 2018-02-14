@@ -73,12 +73,33 @@ class App extends BaseComponent {
 
     ReactGA.initialize('UA-26504381-7');
     ReactGA.pageview(window.location.pathname + window.location.search);
+
+    window.addEventListener('blur', () => this.handleWindowBlur());
+    window.addEventListener('focus', () => this.handleWindowFocus());
+  }
+
+  handleWindowBlur () {
+    if (this.state.isMuted) {
+      return;
+    }
+    this.setState({wasPlaying: true});
+    this.toggleMusic();
+  }
+
+  handleWindowFocus () {
+    if (this.state.wasPlaying) {
+      this.toggleMusic();
+      this.setState({wasPlaying: false});
+    }
   }
 
   componentWillUnmount () {
     webgl.canvas.removeEventListener('touchstart', this.handlePreventDefault);
     webgl.canvas.removeEventListener('mousedown', this.handleCanvasMouseDown);
     webgl.canvas.removeEventListener('mouseup', this.handleCanvasMouseUp);
+
+    window.removeEventListener('blur', () => this.handleWindowBlur());
+    window.removeEventListener('focus', () => this.handleWindowFocus());
   }
 
   loadWebGL () {
