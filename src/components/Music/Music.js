@@ -23,9 +23,9 @@ class Music extends BaseComponent {
     return (
       <audio
         ref={c => { this.audioEl = c; }}
-        volume={0.2}
         loop
         preload='auto'
+        volume='0.05'
       >
         <source src='assets/sound/off-color-outtro.mp3' type='audio/mpeg'/>
         <source src='assets/sound/off-color-outtro.ogg' type='audio/ogg'/>
