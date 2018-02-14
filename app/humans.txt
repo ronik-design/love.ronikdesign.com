@@ -1,6 +1,10 @@
-/* TEAM */
+/* Design and Development */
+Name: Ronik
+Site: http://www.ronikdesign.com/
+Twitter: @ronikdesign
+Location: Brooklyn, NY
 
-  Design and Development: Ronik
-  Site: http://www.ronikdesign.com/
-  Twitter: @ronikdesign
-  Location: Brooklyn, NY
+/* MUSIC */
+Name: Ozzed
+Site: http://ozzed.net/music/nackskott.shtml
+Track: Off-Color Outro
