@@ -15,10 +15,10 @@ class Landing extends BaseComponent {
   }
 
   animateIn () {
-    this.logo.animateIn({ delay: 4 });
+    // this.logo.animateIn({ delay: 4 });
     this.muteButton.animateIn({ delay: 4.2 });
-    this.shuffleButton.animateIn({ delay: 4.3 });
-    this.shareButton.animateIn({ delay: 4.4 });
+    // this.shuffleButton.animateIn({ delay: 4.3 });
+    // this.shareButton.animateIn({ delay: 4.4 });
   }
 
   animateOut () {
@@ -28,31 +28,13 @@ class Landing extends BaseComponent {
     // ]);
   }
 
-  handleShuffle () {
-    this.props.updateMessage();
-    ReactGA.event({
-      category: 'button',
-      action: 'click',
-      label: 'randomize'
-    });
-  }
-
-  handleShare () {
-    this.props.updateContent('Share');
-    ReactGA.event({
-      category: 'button',
-      action: 'click',
-      label: 'spread the love'
-    });
-  }
-
   render () {
     const classes = classnames({
       'Landing': true
     });
     return (
       <div className={classes} ref={ c => { this.container = c; } }>
-        <Logo ref={c => {this.logo = c; }}/>
+        {/* <Logo ref={c => {this.logo = c; }}/> */}
         <Controls>
           <div className="ControlsGroup">
             <Button
@@ -62,7 +44,7 @@ class Landing extends BaseComponent {
               extraClasses={{muted: this.props.isMuted}}
             />
           </div>
-          <div className="ControlsGroup">
+          {/* <div className="ControlsGroup">
             <Button
               onClick={() => this.handleShuffle()}
               ref={c => { this.shuffleButton = c;}}
@@ -77,7 +59,7 @@ class Landing extends BaseComponent {
             >
               Spread the love
             </Button>
-          </div>
+          </div> */}
         </Controls>
       </div>
     );
