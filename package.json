@@ -1,13 +1,13 @@
 {
-  "name": "2018.ronikdesign.com",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.js",
   "license": "MIT",
   "author": {
-    "name": "Ronik",
-    "email": "hello@ronikdesign.com",
-    "url": "https://github.com/ronik-design"
+    "name": "",
+    "email": "",
+    "url": ""
   },
   "dependencies": {
     "@jam3/gsap-promise": "^4.0.1",
@@ -93,10 +93,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/ronik-design/2018.ronikdesign.com"
+    "url": ""
   },
-  "homepage": "https://github.com/ronik-design/2018.ronikdesign.com",
+  "homepage": "",
   "bugs": {
-    "url": "https://github.com/ronik-design/2018.ronikdesign.com/issues"
+    "url": ""
   }
 }

@@ -1,5 +1,5 @@
 const messages = [
-  ['Happy', '520', 'Day!'],
+  ['Happy', '520'],
   ['You are', 'pixel', 'perfect'],
 ];
 
