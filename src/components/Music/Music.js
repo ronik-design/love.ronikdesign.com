@@ -11,7 +11,7 @@ class Music extends BaseComponent {
     if (state === false) {
       this.audioEl.play();
     } else {
-      this.audioEl.pause();
+      this.audioEl.play();
     }
   }
 

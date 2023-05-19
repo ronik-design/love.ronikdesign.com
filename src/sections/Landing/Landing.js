@@ -16,7 +16,7 @@ class Landing extends BaseComponent {
 
   animateIn () {
     // this.logo.animateIn({ delay: 4 });
-    this.muteButton.animateIn({ delay: 4.2 });
+    // this.muteButton.animateIn({ delay: 4.2 });
     // this.shuffleButton.animateIn({ delay: 4.3 });
     // this.shareButton.animateIn({ delay: 4.4 });
   }
@@ -36,14 +36,14 @@ class Landing extends BaseComponent {
       <div className={classes} ref={ c => { this.container = c; } }>
         {/* <Logo ref={c => {this.logo = c; }}/> */}
         <Controls>
-          <div className="ControlsGroup">
+          {/* <div className="ControlsGroup">
             <Button
               onClick={() => this.props.toggleMusic()}
               ref={ c => { this.muteButton = c; } }
               icon='sound'
               extraClasses={{muted: this.props.isMuted}}
             />
-          </div>
+          </div> */}
           {/* <div className="ControlsGroup">
             <Button
               onClick={() => this.handleShuffle()}

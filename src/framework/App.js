@@ -37,7 +37,7 @@ class App extends BaseComponent {
       message: 0,
       isLoaded: false,
       section: 'Preloader',
-      isMuted: false
+      isMuted: true
     };
 
     this.updateStateFromQuery();
@@ -76,6 +76,8 @@ class App extends BaseComponent {
 
     window.addEventListener('blur', () => this.handleWindowBlur());
     window.addEventListener('focus', () => this.handleWindowFocus());
+    this.setState({wasPlaying: false});
+    this.toggleMusic();
   }
 
   handleWindowBlur () {
@@ -229,6 +231,15 @@ class App extends BaseComponent {
           { content }
         </PreactTransitionGroup>
         <Music isMuted={this.state.isMuted}/>
+        {/* <audio
+        ref={c => { this.audioEl = c; }}
+        loop
+        preload='auto'
+        volume='0.05'
+      >
+        <source src='app/assets/sound/off-color-outtro.mp3' type='audio/mpeg'/>
+        <source src='app/assets/sound/off-color-outtro.ogg' type='audio/ogg'/>
+      </audio> */}
       </div>
     );
   }
