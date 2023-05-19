@@ -17,15 +17,24 @@ class Landing extends BaseComponent {
   animateIn () {
     // this.logo.animateIn({ delay: 4 });
     // this.muteButton.animateIn({ delay: 4.2 });
-    // this.shuffleButton.animateIn({ delay: 4.3 });
+    this.shuffleButton.animateIn({ delay: 4.3 });
     // this.shareButton.animateIn({ delay: 4.4 });
   }
 
   animateOut () {
-    // return Promise.all([
-    //   this.shareButton.animateOut(),
-    //   this.shuffleButton.animateOut()
-    // ]);
+    return Promise.all([
+      // this.shareButton.animateOut(),
+      this.shuffleButton.animateOut()
+    ]);
+  }
+
+  handleShuffle () {
+    this.props.updateMessage();
+    ReactGA.event({
+      category: 'button',
+      action: 'click',
+      label: 'randomize'
+    });
   }
 
   render () {
@@ -44,22 +53,22 @@ class Landing extends BaseComponent {
               extraClasses={{muted: this.props.isMuted}}
             />
           </div> */}
-          {/* <div className="ControlsGroup">
+          <div className="ControlsGroup">
             <Button
               onClick={() => this.handleShuffle()}
               ref={c => { this.shuffleButton = c;}}
               icon='random'
               extraClasses={{primary: true}}
             />
+          </div>
+          <div className="ControlsGroup">
             <Button
-              onClick={() => this.handleShare()}
-              ref={ c => { this.shareButton = c; } }
-              icon='share'
-              expanded
-            >
-              Spread the love
-            </Button>
-          </div> */}
+              onClick={() => this.handleShuffle()}
+              ref={c => { this.shuffleButton = c;}}
+              icon='random'
+              extraClasses={{primary: true}}
+            />
+          </div>
         </Controls>
       </div>
     );
